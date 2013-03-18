@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <!--
-        POM.
+        POM
     -->
     <groupId>eu.artofcoding.ventplan</groupId>
     <artifactId>ventplan-prinzipskizze</artifactId>
@@ -16,41 +16,41 @@
         <relativePath>..</relativePath>
     </parent>
     <!--
-        Project Information.
+        Project Information
     -->
     <name>Ventplan Prinzipskizze</name>
     <url>http://www.ventplan.de/product/ventplan-server/module-prinzipskizze.html</url>
     <!--
-        Build Settings.
+        Build Settings
     -->
     <packaging>war</packaging>
-    <!-- Properties. -->
+    <!-- Properties -->
     <properties>
-        <version.org.jvnet.jax-ws-commons>1.3</version.org.jvnet.jax-ws-commons>
-        <version.org.jboss.as.plugins.jboss-as-maven-plugin>7.1.1.Final</version.org.jboss.as.plugins.jboss-as-maven-plugin>
     </properties>
     <dependencies>
         <!--
-            Java EE.
+            Java EE
         -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>${version.javax.javaee-api}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- CDI -->
+        <!--
+            CDI
+        -->
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
-            <version>${version.javax.enterprise.cdi-api}</version>
             <scope>provided</scope>
         </dependency>
+        <!--
+            Web Services
+        -->
         <!-- jax-ws-commons -->
         <dependency>
             <groupId>org.jvnet.jax-ws-commons</groupId>
             <artifactId>thread-scope</artifactId>
-            <version>${version.org.jvnet.jax-ws-commons}</version>
         </dependency>
         <!--
             Ventplan
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>eu.artofcoding.ventplan</groupId>
             <artifactId>ventplan-api</artifactId>
-            <version>7.2.0</version>
+            <version>7.0.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -68,29 +68,43 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-        <!--
-            Maven Plugins.
-            http://maven.apache.org/guides/mini/guide-configuring-plugins.html
-        -->
         <plugins>
             <!-- maven-war-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>${version.org.apache.maven.plugins.maven-war-plugin}</version>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                        </resource>
+                    </webResources>
+                </configuration>
             </plugin>
-            <!--
-                jboss-as-maven-plugin
-                http://docs.jboss.org/jbossas/7/plugins/maven/latest/
-            -->
+            <!-- jboss-as-maven-plugin -->
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>${version.org.jboss.as.plugins.jboss-as-maven-plugin}</version>
                 <executions>
                     <!-- Deploy the application on "install" -->
                     <execution>
+                        <id>jboss-deploy</id>
                         <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Setup SSH tunnel to service.ventplan.com -->
+                            <hostname>localhost</hostname>
+                            <port>9999</port>
+                            <username>admin</username>
+                            <password>password</password>
+                        </configuration>
+                    </execution>
+                    <!-- Re-deploy the application on "deploy" -->
+                    <execution>
+                        <id>jboss-redeploy</id>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>redeploy</goal>
                         </goals>
@@ -99,7 +113,7 @@
                             <hostname>localhost</hostname>
                             <port>9999</port>
                             <username>admin</username>
-                            <password>Kd7cTp8</password>
+                            <password>password</password>
                         </configuration>
                     </execution>
                 </executions>

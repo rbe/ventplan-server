@@ -9,10 +9,10 @@
  * rbe, 02.01.13 17:52
  */
 
-package com.ventplan.storage;
+package eu.artofcoding.ventplan.storage;
 
-import com.ventplan.model.VpxConstants;
-import com.ventplan.model.vpx.VentplanProject;
+import eu.artofcoding.ventplan.api.VpxConstants;
+import eu.artofcoding.ventplan.api.vpx.VentplanProject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

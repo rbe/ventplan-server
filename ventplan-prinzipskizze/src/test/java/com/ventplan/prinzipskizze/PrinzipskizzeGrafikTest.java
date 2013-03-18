@@ -61,7 +61,7 @@ public class PrinzipskizzeGrafikTest {
         prinzipskizzeGrafik.addConnector(connector, ZU, "OG", "Büro / 125 URH");
         prinzipskizzeGrafik.addConnector(connector, ZU, "OG", "Schlafzimmer / 125 URH");
         //
-        File file = prinzipskizzeGrafik.drawText("plain", names, connector);
+        File file = prinzipskizzeGrafik.drawText("com/ventplan/prinzipskizze/images/plain", names, connector);
         if (file.length() > 0) {
             Path target = Paths.get(DESKTOP, "Plain.png");
             Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
@@ -102,7 +102,7 @@ public class PrinzipskizzeGrafikTest {
         prinzipskizzeGrafik.addConnector(connector, ZU, "OG", "Büro / 125 URH");
         prinzipskizzeGrafik.addConnector(connector, ZU, "OG", "Schlafzimmer / 125 URH");
         //
-        File file = prinzipskizzeGrafik.drawText("WAC237", names, connector);
+        File file = prinzipskizzeGrafik.drawText("com/ventplan/prinzipskizze/images/WAC237", names, connector);
         if (file.length() > 0) {
             Path target = Paths.get(DESKTOP, "WAC-237.png");
             Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);

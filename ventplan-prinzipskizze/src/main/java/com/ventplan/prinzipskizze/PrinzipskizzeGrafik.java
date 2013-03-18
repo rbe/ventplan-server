@@ -1,14 +1,15 @@
 /*
- * Ventplan
- * ventplan202, ventplan202
- * Copyright (C) 2005-2010 Informationssysteme Ralf Bensmann, http://www.bensmann.com/
- * Copyright (C) 2011-2012 art of coding UG, http://www.art-of-coding.eu/
+ * ventplan-server
+ * ventplan-prinzipskizze
+ * Copyright (C) 2011-2013 art of coding UG, http://www.art-of-coding.eu
+ * Copyright (C) 2005-2010 Informationssysteme Ralf Bensmann, http://www.bensmann.com
  *
  * Alle Rechte vorbehalten. Nutzung unterliegt Lizenzbedingungen.
  * All rights reserved. Use is subject to license terms.
  *
- * rbe, 7/18/12 4:21 PM
+ * rbe, 18.03.13 08:36
  */
+
 package com.ventplan.prinzipskizze;
 
 import javax.imageio.ImageIO;
@@ -17,7 +18,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -182,12 +182,14 @@ public class PrinzipskizzeGrafik {
     }
 
     private void drawSchriftfeld(BufferedImage img, String name, int y) {
-        // Create graphics
-        Graphics2D g2 = img.createGraphics();
-        g2.setColor(Color.black);
-        g2.setFont(GERAET_FONT);
-        // Draw text
-        g2.drawString(name, SCHRIFTFELD_X, y);
+        if (null != name) {
+            // Create graphics
+            Graphics2D g2 = img.createGraphics();
+            g2.setColor(Color.black);
+            g2.setFont(GERAET_FONT);
+            // Draw text
+            g2.drawString(name, SCHRIFTFELD_X, y);
+        }
     }
 
     /**
@@ -203,9 +205,10 @@ public class PrinzipskizzeGrafik {
             // Which graphic to use as base?
             String filename = String.format("AB%d_ZU%d", abluft.size(), zuluft.size());
             // Load graphic
-            String format = String.format("images/%s/%s.png", basis, filename);
-            System.out.println(getClass().getResource(".").toString());
-            InputStream resourceAsStream = getClass().getResourceAsStream(format);
+            String packageName = PrinzipskizzeGrafik.class.getPackage().getName();
+            String fullPathToImage = String.format("/%s/images/%s/%s.png", packageName.replaceAll("[.]", "/"), basis, filename);
+            ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+            InputStream resourceAsStream = contextClassLoader.getResourceAsStream(fullPathToImage);
             BufferedImage img = ImageIO.read(resourceAsStream);
             // Projekt
             if (names.containsKey(PROJEKT)) {

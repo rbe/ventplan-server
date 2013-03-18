@@ -9,7 +9,7 @@
  * rbe, 02.01.13 19:05
  */
 
-package com.ventplan.storage;
+package eu.artofcoding.ventplan.storage;
 
 import com.sun.jersey.api.container.grizzly2.GrizzlyServerFactory;
 import com.sun.jersey.api.core.PackagesResourceConfig;
@@ -19,27 +19,27 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.net.URI;
+import java.util.logging.Logger;
 
 public class VpxServer {
+
+    private static final Logger logger = Logger.getLogger(VpxServer.class.getName());
 
     private VpxServer() {
     }
 
-    public static void httpServer() throws IOException {
-        URI baseUri = UriBuilder.fromUri("http://localhost/").port(8080).build();
-        System.out.println("Starting grizzly...");
-        ResourceConfig rc = new PackagesResourceConfig("com.ventplan.storage");
+    public static HttpServer httpServer(String hostname, int port) throws IOException {
+        URI baseUri = UriBuilder.fromUri(String.format("http://%s/", hostname)).port(port).build();
+        logger.fine("Starting grizzly...");
+        ResourceConfig rc = new PackagesResourceConfig(VpxServer.class.getPackage().getName());
         HttpServer httpServer = GrizzlyServerFactory.createHttpServer(baseUri, rc);
-        System.out.println(String.format("Jersey app started with WADL available at %sapplication.wadl", baseUri));
+        logger.fine(String.format("Jersey app started with WADL available at %sapplication.wadl", baseUri));
         /*
         System.out.println("Hit enter to stop it...");
         System.in.read();
         httpServer.stop();
         */
-    }
-
-    public static void main(String[] args) throws IOException {
-        httpServer();
+        return httpServer;
     }
 
 }

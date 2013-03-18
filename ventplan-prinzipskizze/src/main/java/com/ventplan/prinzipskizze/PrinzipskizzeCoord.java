@@ -1,3 +1,15 @@
+/*
+ * ventplan-server
+ * ventplan-prinzipskizze
+ * Copyright (C) 2011-2013 art of coding UG, http://www.art-of-coding.eu
+ * Copyright (C) 2005-2010 Informationssysteme Ralf Bensmann, http://www.bensmann.com
+ *
+ * Alle Rechte vorbehalten. Nutzung unterliegt Lizenzbedingungen.
+ * All rights reserved. Use is subject to license terms.
+ *
+ * rbe, 18.03.13 08:42
+ */
+
 package com.ventplan.prinzipskizze;
 
 import java.awt.*;
@@ -58,13 +70,13 @@ public class PrinzipskizzeCoord {
     public static final int ZENTRALGERAT_Y = 625 + FONT_SIZE;
 
     public static final int LVK_HEIGHT = 156;
-    public static final int LVK_AB_LAST = 443;
-    public static final int LVK_ZU_FIRST = 500;
+    public static final int LVK_AB_LAST = 447;
+    public static final int LVK_ZU_FIRST = 504;
 
-    public static final int SCHRIFTFELD_X = 219;
-    public static final int SCHRIFTFELD_PROJEKT_Y = 67 + FONT_SIZE;
-    public static final int SCHRIFTFELD_PLAN_Y = 95 + FONT_SIZE;
-    public static final int SCHRIFTFELD_DOKUMENTERSTELLER_Y = 121 + FONT_SIZE;
-    public static final int SCHRIFTFELD_ERSTELLDATUM_Y = 148 + FONT_SIZE;
+    public static final int SCHRIFTFELD_X = 139;
+    public static final int SCHRIFTFELD_PROJEKT_Y = 68 + FONT_SIZE;
+    public static final int SCHRIFTFELD_PLAN_Y = 96 + FONT_SIZE;
+    public static final int SCHRIFTFELD_DOKUMENTERSTELLER_Y = 122 + FONT_SIZE;
+    public static final int SCHRIFTFELD_ERSTELLDATUM_Y = 149 + FONT_SIZE;
 
 }

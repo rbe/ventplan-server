@@ -26,26 +26,18 @@
     <packaging>war</packaging>
     <!-- Properties. -->
     <properties>
-        <!-- Jersey -->
-        <version.com.sun.jersey.jersey-server>1.15</version.com.sun.jersey.jersey-server>
-        <!-- JAX-WS -->
-        <version.org.jvnet.jax-ws-commons>1.3</version.org.jvnet.jax-ws-commons>
-        <!-- JBoss -->
-        <version.org.jboss.as.plugins.jboss-as-maven-plugin>7.1.1.Final</version.org.jboss.as.plugins.jboss-as-maven-plugin>
     </properties>
     <dependencies>
         <!--
-            Jersey
+            Web Services.
         -->
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-server</artifactId>
-            <version>${version.com.sun.jersey.jersey-server}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-grizzly2</artifactId>
-            <version>${version.com.sun.jersey.jersey-server}</version>
         </dependency>
         <!--
             Ventplan.
@@ -53,7 +45,7 @@
         <dependency>
             <groupId>eu.artofcoding.ventplan</groupId>
             <artifactId>ventplan-api</artifactId>
-            <version>${project.version}</version>
+            <version>7.0.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -63,15 +55,10 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-        <!--
-            Maven Plugins.
-            http://maven.apache.org/guides/mini/guide-configuring-plugins.html
-        -->
         <plugins>
-            <!-- maven-compiler-plugin, http://maven.apache.org/plugins/maven-compiler-plugin/ -->
+            <!-- maven-compiler-plugin -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${version.org.apache.maven.plugins.maven-compiler-plugin}</version>
                 <configuration>
                     <testSource>${version.java.vm}</testSource>
                     <testTarget>${version.java.vm}</testTarget>
@@ -84,7 +71,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>${version.org.apache.maven.plugins.maven-war-plugin}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>

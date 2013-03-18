@@ -4,28 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <!--
-        POM.
+        POM
     -->
     <groupId>eu.artofcoding.ventplan</groupId>
     <artifactId>ventplan-server</artifactId>
     <version>7.2.0</version>
     <!--
-        Parent POM.
+        Parent POM
     -->
     <parent>
         <groupId>eu.artofcoding</groupId>
         <artifactId>aoc-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </parent>
-    <!-- Modules. -->
+    <!-- Modules -->
     <modules>
+        <module>ventplan-persistence</module>
         <module>ventplan-storage</module>
         <module>ventplan-prinzipskizze</module>
-        <module>ventplan-prinzipskizze-client</module>
-        <module>ventplan-persistence</module>
     </modules>
     <!--
-        Project Information.
+        Project Information
     -->
     <name>Ventplan Server</name>
     <url>http://www.ventplan.com/product/ventplan-server.html</url>
@@ -49,10 +48,6 @@
             <name></name>
             <email></email>
         </contributor>
-        <contributor>
-            <name>Manuel Murawski</name>
-            <email>manuel.murawski@art-of-coding.eu</email>
-        </contributor>
     </contributors>
     -->
     <organization>
@@ -63,72 +58,154 @@
         Build Settings.
     -->
     <packaging>pom</packaging>
-    <!-- Properties. -->
+    <!-- Properties -->
     <properties>
-        <!--
-            Explicitly declaring the source encoding eliminates the following message
-            [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
-        -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--
-            Runtime, Virtual Machine.
-        -->
+        <!-- Java Virtual Machine -->
         <version.java.vm>1.7</version.java.vm>
-        <!--
-            Libraries.
-        -->
-        <!--
-            Beetlejuice.
-        -->
-        <version.eu.artofcoding.beetlejuice>1.0.0-SNAPSHOT</version.eu.artofcoding.beetlejuice>
-        <!--
-            Java EE.
-        -->
-        <version.javax.javaee-api>6.0</version.javax.javaee-api>
-        <version.javax.enterprise.cdi-api>1.0-SP4</version.javax.enterprise.cdi-api>
-        <!--
-            Unit Testing.
-        -->
-        <version.org.junit>4.10</version.org.junit>
-        <!-- TestNG, http://maven.apache.org/plugins/maven-surefire-plugin/examples/testng.html -->
-        <version.org.testng>6.8</version.org.testng>
-        <!--
-            Maven Plugins.
-            http://maven.apache.org/plugins/index.html
-        -->
-        <!-- Maven Compiler Plugin, http://maven.apache.org/plugins/maven-compiler-plugin/ -->
-        <version.org.apache.maven.plugins.maven-compiler-plugin>2.5.1</version.org.apache.maven.plugins.maven-compiler-plugin>
-        <!-- Maven Surefire Plugin, http://maven.apache.org/plugins/maven-surefire-plugin/ -->
-        <version.org.apache.maven.plugins.maven-surefire-plugin>2.12.4</version.org.apache.maven.plugins.maven-surefire-plugin>
-        <!-- Maven JAR Plugin -->
-        <version.org.apache.maven.plugins.maven-jar-plugin>2.4</version.org.apache.maven.plugins.maven-jar-plugin>
-        <!-- Maven WAR Plugin -->
-        <version.org.apache.maven.plugins.maven-war-plugin>2.3</version.org.apache.maven.plugins.maven-war-plugin>
-        <!-- Maven Assembly Plugin -->
-        <version.org.apache.maven.plugins.maven-assembly-plugin>2.3</version.org.apache.maven.plugins.maven-assembly-plugin>
-        <!-- Maven Bundle Plugin -->
-        <version.org.apache.maven-bundle-plugin>2.3.7</version.org.apache.maven-bundle-plugin>
     </properties>
+    <!--
+        Profiles
+    -->
+    <profiles>
+        <!-- arquillian-junit -->
+        <profile>
+            <id>arquillian-junit</id>
+            <dependencies>
+                <!-- JUnit -->
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <!-- Arquillian -->
+                <dependency>
+                    <groupId>org.jboss.arquillian.junit</groupId>
+                    <artifactId>arquillian-junit-container</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <!-- arquillian-testng -->
+        <profile>
+            <id>arquillian-testng</id>
+            <dependencies>
+                <!-- TestNG -->
+                <dependency>
+                    <groupId>org.testng</groupId>
+                    <artifactId>testng</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <!-- Arquillian TestNG -->
+                <dependency>
+                    <groupId>org.jboss.arquillian.testng</groupId>
+                    <artifactId>arquillian-testng-container</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <!-- arquillian-weld-ee-embedded -->
+        <profile>
+            <id>arquillian-weld-ee-embedded</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.spec</groupId>
+                    <artifactId>jboss-javaee-6.0</artifactId>
+                    <type>pom</type>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.weld</groupId>
+                    <artifactId>weld-core</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <!-- arquillian-glassfish-embedded -->
+        <profile>
+            <id>arquillian-glassfish-embedded</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.main.extras</groupId>
+                    <artifactId>glassfish-embedded-all</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <!-- arquillian-jbossas-managed -->
+        <profile>
+            <id>arquillian-jbossas-managed</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.spec</groupId>
+                    <artifactId>jboss-javaee-6.0</artifactId>
+                    <type>pom</type>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.as</groupId>
+                    <artifactId>jboss-as-arquillian-container-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.arquillian.protocol</groupId>
+                    <artifactId>arquillian-protocol-servlet</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <!-- maven-dependency-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.jboss.as</groupId>
+                                            <artifactId>jboss-as-dist</artifactId>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>target</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <dependencies>
-        <!--
-            Tests
-        -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${version.org.testng}</version>
-        </dependency>
     </dependencies>
     <build>
-        <!--
-            Build Plugins.
-            http://maven.apache.org/plugins/index.html
-        -->
         <plugins>
-            <!-- maven-compiler-plugin, http://maven.apache.org/plugins/maven-compiler-plugin/ -->
+            <!-- maven-compiler-plugin -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${version.org.apache.maven.plugins.maven-compiler-plugin}</version>
                 <configuration>
                     <testSource>${version.java.vm}</testSource>
                     <testTarget>${version.java.vm}</testTarget>
@@ -140,25 +217,27 @@
         </plugins>
     </build>
     <!--
-        Build Environment.
+        Build Environment
     -->
-    <!-- Issue Management. -->
+    <!-- Issue Management -->
     <issueManagement>
         <system>JIRA</system>
-        <url>http://artofcoding.atlassian.net/browse/VENTPLAN</url>
+        <url>http://artofcoding.atlassian.net/browse/VCS</url>
     </issueManagement>
-    <!-- Source Code Management. -->
+    <!-- Source Code Management -->
     <scm>
-        <developerConnection>scm:git:[fetch=]https://bitbucket.org/ventplan/ventplan-server[push=]ssh://git@bitbucket.org:ventplan/ventplan-server.git</developerConnection>
+        <developerConnection>
+            scm:git:[fetch=]https://bitbucket.org/ventplan/ventplan-server[push=]ssh://git@bitbucket.org:ventplan/ventplan-server.git
+        </developerConnection>
         <url>https://bitbucket.org/ventplan/ventplan-server</url>
     </scm>
     <!--
-        Maven Environment.
+        Maven Environment
     -->
-    <!-- Repositories. -->
+    <!-- Repositories -->
     <repositories>
     </repositories>
-    <!-- Distribution Management. -->
+    <!-- Distribution Management -->
     <distributionManagement>
         <!-- art of coding's Public Maven Repository (local) -->
         <repository>
