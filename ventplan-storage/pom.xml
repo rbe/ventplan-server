@@ -29,7 +29,20 @@
     </properties>
     <dependencies>
         <!--
-            Web Services.
+            BaseX
+        -->
+        <dependency>
+            <groupId>org.basex</groupId>
+            <artifactId>basex</artifactId>
+            <version>7.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.basex</groupId>
+            <artifactId>basex-api</artifactId>
+            <version>7.6</version>
+        </dependency>
+        <!--
+            Web Services
         -->
         <dependency>
             <groupId>com.sun.jersey</groupId>
@@ -40,7 +53,7 @@
             <artifactId>jersey-grizzly2</artifactId>
         </dependency>
         <!--
-            Ventplan.
+            Ventplan
         -->
         <dependency>
             <groupId>eu.artofcoding.ventplan</groupId>
@@ -78,4 +91,11 @@
         </plugins>
         <finalName>${project.artifactId}</finalName>
     </build>
+    <repositories>
+        <repository>
+            <id>basex</id>
+            <name>BaseX Maven Repository</name>
+            <url>http://files.basex.org/maven</url>
+        </repository>
+    </repositories>
 </project>
