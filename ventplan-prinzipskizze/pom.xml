@@ -8,11 +8,11 @@
     -->
     <groupId>eu.artofcoding.ventplan</groupId>
     <artifactId>ventplan-prinzipskizze</artifactId>
-    <version>7.2.0</version>
+    <version>7.3.0</version>
     <parent>
         <groupId>eu.artofcoding.ventplan</groupId>
         <artifactId>ventplan-server</artifactId>
-        <version>7.2.0</version>
+        <version>7.3.0</version>
         <relativePath>..</relativePath>
     </parent>
     <!--

@@ -4,27 +4,30 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <!--
-        POM.
+        POM
     -->
     <groupId>eu.artofcoding.ventplan</groupId>
     <artifactId>ventplan-storage</artifactId>
-    <version>7.2.0</version>
+    <version>7.3.0</version>
+    <!--
+        Parent POM
+    -->
     <parent>
         <groupId>eu.artofcoding.ventplan</groupId>
         <artifactId>ventplan-server</artifactId>
-        <version>7.2.0</version>
+        <version>7.3.0</version>
         <relativePath>..</relativePath>
     </parent>
     <!--
-        Project Information.
+        Project Information
     -->
     <name>Ventplan Storage</name>
     <url>http://www.ventplan.de/product/ventplan-server/module-storage.html</url>
     <!--
-        Build Settings.
+        Build Settings
     -->
     <packaging>war</packaging>
-    <!-- Properties. -->
+    <!-- Properties -->
     <properties>
     </properties>
     <dependencies>
@@ -34,12 +37,10 @@
         <dependency>
             <groupId>org.basex</groupId>
             <artifactId>basex</artifactId>
-            <version>7.6</version>
         </dependency>
         <dependency>
             <groupId>org.basex</groupId>
             <artifactId>basex-api</artifactId>
-            <version>7.6</version>
         </dependency>
         <!--
             Web Services
@@ -47,10 +48,30 @@
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-server</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-grizzly2</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--
             Ventplan
@@ -58,7 +79,7 @@
         <dependency>
             <groupId>eu.artofcoding.ventplan</groupId>
             <artifactId>ventplan-api</artifactId>
-            <version>7.0.0</version>
+            <version>7.3.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -91,11 +112,4 @@
         </plugins>
         <finalName>${project.artifactId}</finalName>
     </build>
-    <repositories>
-        <repository>
-            <id>basex</id>
-            <name>BaseX Maven Repository</name>
-            <url>http://files.basex.org/maven</url>
-        </repository>
-    </repositories>
 </project>

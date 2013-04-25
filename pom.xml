@@ -3,29 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!--
-        POM
-    -->
-    <groupId>eu.artofcoding.ventplan</groupId>
-    <artifactId>ventplan-server</artifactId>
-    <version>7.2.0</version>
-    <!--
-        Parent POM
-    -->
     <parent>
         <groupId>eu.artofcoding</groupId>
         <artifactId>aoc-parent</artifactId>
         <version>1.1.0</version>
     </parent>
-    <!-- Modules -->
-    <modules>
-        <module>ventplan-persistence</module>
-        <module>ventplan-storage</module>
-        <module>ventplan-prinzipskizze</module>
-    </modules>
-    <!--
-        Project Information
-    -->
+    <groupId>eu.artofcoding.ventplan</groupId>
+    <artifactId>ventplan-server</artifactId>
+    <version>7.3.0</version>
     <name>Ventplan Server</name>
     <url>http://www.ventplan.com/product/ventplan-server.html</url>
     <inceptionYear>2012</inceptionYear>
@@ -54,18 +39,16 @@
         <name>art of coding</name>
         <url>http://www.art-of-coding.eu/</url>
     </organization>
-    <!--
-        Build Settings.
-    -->
+    <modules>
+        <module>ventplan-api</module>
+        <module>ventplan-persistence</module>
+        <module>ventplan-storage</module>
+        <module>ventplan-prinzipskizze</module>
+    </modules>
     <packaging>pom</packaging>
-    <!-- Properties -->
     <properties>
-        <!-- Java Virtual Machine -->
         <version.java.vm>1.7</version.java.vm>
     </properties>
-    <!--
-        Profiles
-    -->
     <profiles>
         <!-- arquillian-junit -->
         <profile>
@@ -198,8 +181,71 @@
             </build>
         </profile>
     </profiles>
-    <dependencies>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <!--
+                Persistence
+            -->
+            <!-- DataNucleus -->
+            <dependency>
+                <groupId>javax.jdo</groupId>
+                <artifactId>jdo-api</artifactId>
+                <version>3.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.datanucleus</groupId>
+                <artifactId>datanucleus-core</artifactId>
+                <version>[3.2.0-m1, 3.2.99)</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.datanucleus</groupId>
+                <artifactId>datanucleus-api-jdo</artifactId>
+                <version>[3.2.0-m1, 3.2.99)</version>
+            </dependency>
+            <dependency>
+                <groupId>org.datanucleus</groupId>
+                <artifactId>datanucleus-rdbms</artifactId>
+                <version>[3.2.0-m1, 3.2.99)</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- BaseX -->
+            <dependency>
+                <groupId>org.basex</groupId>
+                <artifactId>basex</artifactId>
+                <version>7.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.basex</groupId>
+                <artifactId>basex-api</artifactId>
+                <version>7.6</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-nop</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!--
+                Web Services
+            -->
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-server</artifactId>
+                <version>1.16</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-grizzly2</artifactId>
+                <version>1.16</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey.contribs</groupId>
+                <artifactId>jersey-apache-client</artifactId>
+                <version>1.16</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <plugins>
             <!-- maven-compiler-plugin -->
@@ -236,6 +282,11 @@
     -->
     <!-- Repositories -->
     <repositories>
+        <repository>
+            <id>basex</id>
+            <name>BaseX Maven Repository</name>
+            <url>http://files.basex.org/maven</url>
+        </repository>
     </repositories>
     <!-- Distribution Management -->
     <distributionManagement>

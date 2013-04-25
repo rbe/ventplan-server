@@ -8,7 +8,7 @@
     <parent>
         <artifactId>ventplan-server</artifactId>
         <groupId>eu.artofcoding.ventplan</groupId>
-        <version>7.2.0</version>
+        <version>7.3.0</version>
         <relativePath>..</relativePath>
     </parent>
 
