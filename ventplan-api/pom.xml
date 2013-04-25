@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--
+        POM
+    -->
+    <groupId>eu.artofcoding.ventplan</groupId>
+    <artifactId>ventplan-api</artifactId>
+    <version>7.3.0</version>
+    <!--
+        Parent POM
+    -->
+    <parent>
+        <groupId>eu.artofcoding.ventplan</groupId>
+        <artifactId>ventplan-server</artifactId>
+        <version>7.3.0</version>
+        <relativePath>..</relativePath>
+    </parent>
+    <!--
+        Project Information
+    -->
+    <name>Ventplan API</name>
+    <url>http://www.ventplan.de/product/ventplan-server/module-api.html</url>
+    <!--
+        Build Settings
+    -->
+    <packaging>jar</packaging>
+    <!-- Properties -->
+    <properties>
+    </properties>
+    <dependencies>
+        <!--
+            Web Services
+        -->
+        <dependency>
+            <groupId>com.sun.jersey.contribs</groupId>
+            <artifactId>jersey-apache-client</artifactId>
+        </dependency>
+        <!--
+            Beetlejuice
+        -->
+        <dependency>
+            <groupId>eu.artofcoding.beetlejuice</groupId>
+            <artifactId>beetlejuice-cdm</artifactId>
+        </dependency>
+    </dependencies>
+    <!--
+        Build
+    -->
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+</project>
