@@ -54,7 +54,7 @@ public class VpxServerTest extends Arquillian {
         ventplanProject.getProjekt().setBauvorhaben("Testprojekt Villa Nottuln");
         // Create
         ventplanProject = vpxClient.create(ventplanProject);
-        System.out.printf("after create: ventplanProject=%s%n", ventplanProject);
+        System.out.printf("%s.testCreate: after create: ventplanProject=%s%n", this, ventplanProject);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class VpxServerTest extends Arquillian {
         ventplanProject.getProjekt().setBauvorhaben("Testprojekt Villa Nottuln");
         // Update
         ventplanProject = vpxClient.update(ventplanProject);
-        System.out.printf("after update: ventplanProject=%s%n", ventplanProject);
+        System.out.printf("%s.testUpdate: after update: ventplanProject=%s%n", this, ventplanProject);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class VpxServerTest extends Arquillian {
         ventplanProject.getProjekt().setBauvorhaben("Testprojekt Villa Nottuln");
         // Delete
         vpxClient.delete(ventplanProject);
-        System.out.printf("%s deleted%n", ventplanProject);
+        System.out.printf("%s.testDelete: %s deleted%n", this, ventplanProject);
     }
 
 }
