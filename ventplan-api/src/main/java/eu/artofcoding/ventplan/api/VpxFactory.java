@@ -1,4 +1,4 @@
-/*
+package eu.artofcoding.ventplan.api;/*
  * ventplan-api
  * ventplan-api
  * Copyright (C) 2011-2013 art of coding UG, http://www.art-of-coding.eu
@@ -10,8 +10,6 @@
  * rbe, 04.02.13 10:18
  */
 
-package eu.artofcoding.ventplan.api;
-
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.Annotated;
 import javax.enterprise.inject.spi.InjectionPoint;
@@ -20,8 +18,10 @@ import java.net.URISyntaxException;
 
 public class VpxFactory {
 
+    protected static final String VPX_CLOUD_BASE_URL = "/vpx/cloud";
+
     /**
-     * Factory method to create a simple VpxClient instance.
+     * Factory method to createProject a simple VpxClient instance.
      * @return {@link VpxClientImpl} instance.
      */
     @Produces
@@ -38,7 +38,7 @@ public class VpxFactory {
         // Create client
         VpxClient vpxClient;
         try {
-            URI uri = new URI(VpxConstants.HTTP, userInfo, vpxCloud.server(), vpxCloud.port(), "/vpx", null, null);
+            URI uri = new URI(VpxConstants.HTTP, userInfo, vpxCloud.server(), vpxCloud.port(), VPX_CLOUD_BASE_URL, null, null);
             vpxClient = new VpxClientImpl(uri);
         } catch (URISyntaxException e) {
             throw new VpxException(e);
@@ -47,7 +47,7 @@ public class VpxFactory {
     }
 
     /**
-     * Factory method to create a simple VpxClient instance.
+     * Factory method to createProject a simple VpxClient instance.
      * @return {@link VpxClientImpl} instance.
      */
     @Produces
@@ -64,7 +64,7 @@ public class VpxFactory {
         // Create client
         VpxClient vpxClient;
         try {
-            URI uri = new URI(VpxConstants.HTTP, userInfo, vpxCloud.server(), vpxCloud.port(), "/vpx", null, null);
+            URI uri = new URI(VpxConstants.HTTP, userInfo, vpxCloud.server(), vpxCloud.port(), VPX_CLOUD_BASE_URL, null, null);
             vpxClient = new VpxClientImpl(uri);
         } catch (URISyntaxException e) {
             throw new VpxException(e);

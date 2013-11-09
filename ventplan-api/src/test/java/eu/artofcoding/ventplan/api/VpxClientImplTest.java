@@ -12,15 +12,14 @@
 
 package eu.artofcoding.ventplan.api;
 
-import eu.artofcoding.ventplan.api.vpx.ObjectFactory;
 import eu.artofcoding.ventplan.api.vpx.VentplanProject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import javax.inject.Inject;
 
@@ -32,11 +31,11 @@ public class VpxClientImplTest extends Arquillian {
 
     @Deployment
     public static JavaArchive createDeployment() throws Exception {
-        JavaArchive jar = ShrinkWrap.create(JavaArchive.class)
+        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "vpx-client-test.jar")
                 .addPackage(VpxCloud.class.getPackage().getName())
                 .addPackage(VentplanProject.class.getPackage().getName())
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-        //System.out.println(jar.toString(true));
+        System.out.println(jar.toString(true));
         return jar;
     }
 
@@ -55,6 +54,7 @@ public class VpxClientImplTest extends Arquillian {
         Assert.assertEquals(username2, username3, message);
     }
 
+/*
     @Test
     public void testCreate() throws Exception {
         // Create project
@@ -62,8 +62,8 @@ public class VpxClientImplTest extends Arquillian {
         ventplanProject.setProjekt(new ObjectFactory().createProject());
         ventplanProject.getProjekt().setBauvorhaben("Testprojekt Villa Nottuln");
         // Create
-        ventplanProject = vpxClient.create(ventplanProject);
-        System.out.printf("after create: ventplanProject=%s%n", ventplanProject);
+        ventplanProject = vpxClient.createProject(ventplanProject);
+        System.out.printf("after createProject: ventplanProject=%s%n", ventplanProject);
     }
 
     @Test
@@ -73,8 +73,8 @@ public class VpxClientImplTest extends Arquillian {
         ventplanProject.setProjekt(new ObjectFactory().createProject());
         ventplanProject.getProjekt().setBauvorhaben("Testprojekt Villa Nottuln");
         // Update
-        ventplanProject = vpxClient.update(ventplanProject);
-        System.out.printf("after update: ventplanProject=%s%n", ventplanProject);
+        ventplanProject = vpxClient.updateProject(ventplanProject);
+        System.out.printf("after updateProject: ventplanProject=%s%n", ventplanProject);
     }
 
     @Test
@@ -84,8 +84,9 @@ public class VpxClientImplTest extends Arquillian {
         ventplanProject.setProjekt(new ObjectFactory().createProject());
         ventplanProject.getProjekt().setBauvorhaben("Testprojekt Villa Nottuln");
         // Delete
-        vpxClient.delete(ventplanProject);
+        vpxClient.deleteProject(ventplanProject);
         System.out.printf("%s deleted%n", ventplanProject);
     }
+*/
 
 }

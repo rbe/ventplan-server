@@ -1,4 +1,4 @@
-/*
+package eu.artofcoding.ventplan.api;/*
  * ventplan-api
  * ventplan-api
  * Copyright (C) 2011-2013 art of coding UG, http://www.art-of-coding.eu
@@ -10,22 +10,28 @@
  * rbe, 04.02.13 10:51
  */
 
-package eu.artofcoding.ventplan.api;
-
 import eu.artofcoding.ventplan.api.vpx.VentplanProject;
 
 import java.net.URI;
 
 public interface VpxClient {
 
-    URI makeURI(String projectname) throws VpxException;
+    URI makeProjectURI(String projectname) throws VpxException;
+
+    URI makeTemplateURI(String template) throws VpxException;
+
+    URI makeAccountURI() throws VpxException;
 
     String getUsername();
 
-    VentplanProject create(VentplanProject ventplanProject) throws VpxException;
+    VentplanProject getTemplate(String template) throws VpxException;
 
-    VentplanProject update(VentplanProject ventplanProject) throws VpxException;
+    VentplanProject getProject(String project) throws VpxException;
 
-    VentplanProject delete(VentplanProject ventplanProject) throws VpxException;
+    VentplanProject createProject(VentplanProject ventplanProject) throws VpxException;
+
+    VentplanProject updateProject(VentplanProject ventplanProject) throws VpxException;
+
+    VentplanProject deleteProject(VentplanProject ventplanProject) throws VpxException;
 
 }

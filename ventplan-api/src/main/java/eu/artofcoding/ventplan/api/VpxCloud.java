@@ -1,4 +1,4 @@
-/*
+package eu.artofcoding.ventplan.api;/*
  * ventplan-api
  * ventplan-api
  * Copyright (C) 2011-2013 art of coding UG, http://www.art-of-coding.eu
@@ -9,8 +9,6 @@
  *
  * rbe, 04.02.13 09:39
  */
-
-package eu.artofcoding.ventplan.api;
 
 import javax.enterprise.util.Nonbinding;
 import javax.inject.Qualifier;

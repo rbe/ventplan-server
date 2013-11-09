@@ -1,4 +1,4 @@
-/*
+package eu.artofcoding.ventplan.api;/*
  * ventplan-api
  * ventplan-api
  * Copyright (C) 2011-2013 art of coding UG, http://www.art-of-coding.eu
@@ -9,8 +9,6 @@
  *
  * rbe, 02.02.13 17:36
  */
-
-package eu.artofcoding.ventplan.api;
 
 public class VpxException extends Exception {
 

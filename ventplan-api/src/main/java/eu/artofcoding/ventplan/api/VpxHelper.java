@@ -1,4 +1,4 @@
-/*
+package eu.artofcoding.ventplan.api;/*
  * ventplan-api
  * ventplan-api
  * Copyright (C) 2011-2013 art of coding UG, http://www.art-of-coding.eu
@@ -9,8 +9,6 @@
  *
  * rbe, 02.02.13 17:36
  */
-
-package eu.artofcoding.ventplan.api;
 
 import eu.artofcoding.ventplan.api.vpx.VentplanProject;
 
@@ -25,9 +23,9 @@ public class VpxHelper {
     public static VentplanProject unmarshal(File file) throws VpxException {
         VentplanProject ventplanProject;
         try {
-            // create a JAXBContext capable of handling classes generated into package
+            // createProject a JAXBContext capable of handling classes generated into package
             JAXBContext jaxbContext = JAXBContext.newInstance("com.ventplan.model.vpx");
-            // create an Unmarshaller
+            // createProject an Unmarshaller
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             // unmarshal an instance document into a tree of Java content
             // objects composed of classes from the package.
@@ -42,9 +40,9 @@ public class VpxHelper {
 
     public static void marshal(VentplanProject objectToMarshal, File file) throws VpxException {
         try {
-            // create a JAXBContext capable of handling classes generated into package
+            // createProject a JAXBContext capable of handling classes generated into package
             JAXBContext jaxbContext = JAXBContext.newInstance("com.ventplan.model.vpx");
-            // create a Marshaller and do marshal
+            // createProject a Marshaller and do marshal
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.marshal(objectToMarshal, new FileOutputStream(file));

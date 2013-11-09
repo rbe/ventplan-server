@@ -1,4 +1,4 @@
-/*
+package eu.artofcoding.ventplan.api;/*
  * ventplan-api
  * ventplan-api
  * Copyright (C) 2011-2013 art of coding UG, http://www.art-of-coding.eu
@@ -9,8 +9,6 @@
  *
  * rbe, 04.02.13 09:11
  */
-
-package eu.artofcoding.ventplan.api;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientHandlerException;
@@ -41,11 +39,36 @@ public class VpxClientImpl implements VpxClient {
     }
 
     @Override
-    public URI makeURI(String projectname) throws VpxException {
+    public URI makeProjectURI(String project) throws VpxException {
         try {
             String username = URLEncoder.encode(getUsername(), VpxConstants.UTF8);
-            String project = URLEncoder.encode(projectname, VpxConstants.UTF8);
-            String format = String.format("%s/%s/project/%s", uri.toString(), username, project);
+            String _project = URLEncoder.encode(project, VpxConstants.UTF8);
+            String format = String.format("%s/storage/%s/project/%s", uri.toString(), username, _project);
+            System.out.println(format);
+            return URI.create(format);
+        } catch (UnsupportedEncodingException e) {
+            throw new VpxException(e);
+        }
+    }
+
+    @Override
+    public URI makeTemplateURI(String template) throws VpxException {
+        try {
+            String _template = URLEncoder.encode(template, VpxConstants.UTF8);
+            String format = String.format("%s/template/%s", uri.toString(), _template);
+            System.out.println(format);
+            return URI.create(format);
+        } catch (UnsupportedEncodingException e) {
+            throw new VpxException(e);
+        }
+    }
+
+    @Override
+    public URI makeAccountURI() throws VpxException {
+        try {
+            String username = URLEncoder.encode(getUsername(), VpxConstants.UTF8);
+            String format = String.format("%s/account/%s", uri.toString(), username);
+            System.out.println(format);
             return URI.create(format);
         } catch (UnsupportedEncodingException e) {
             throw new VpxException(e);
@@ -67,13 +90,39 @@ public class VpxClientImpl implements VpxClient {
     }
 
     @Override
-    public VentplanProject create(VentplanProject ventplanProject) throws VpxException {
+    public VentplanProject getTemplate(String template) throws VpxException {
+        URI uri = makeTemplateURI(template);
+        WebResource webResource = client.resource(uri);
+        try {
+            VentplanProject response = webResource.accept(MediaType.APPLICATION_XML).get(VentplanProject.class);
+            System.out.printf("%s.getTemplate: %s response=%s%n", this, uri, response);
+            return response;
+        } catch (ClientHandlerException e) {
+            throw new VpxException(e);
+        }
+    }
+
+    @Override
+    public VentplanProject getProject(String project) throws VpxException {
+        URI uri = makeProjectURI(project);
+        WebResource webResource = client.resource(uri);
+        try {
+            VentplanProject response = webResource.accept(MediaType.APPLICATION_XML).get(VentplanProject.class);
+            System.out.printf("%s.getProject: %s response=%s%n", this, uri, response);
+            return response;
+        } catch (ClientHandlerException e) {
+            throw new VpxException(e);
+        }
+    }
+
+    @Override
+    public VentplanProject createProject(VentplanProject ventplanProject) throws VpxException {
         String projectname = ventplanProject.getProjekt().getBauvorhaben();
-        URI uri = makeURI(projectname);
+        URI uri = makeProjectURI(projectname);
         WebResource webResource = client.resource(uri);
         try {
             VentplanProject response = webResource.accept(MediaType.APPLICATION_XML).put(VentplanProject.class, ventplanProject);
-            System.out.printf("%s.create: %s response=%s%n", this, uri, response);
+            System.out.printf("%s.createProject: %s response=%s%n", this, uri, response);
             return response;
         } catch (ClientHandlerException e) {
             throw new VpxException(e);
@@ -81,13 +130,13 @@ public class VpxClientImpl implements VpxClient {
     }
 
     @Override
-    public VentplanProject update(VentplanProject ventplanProject) throws VpxException {
+    public VentplanProject updateProject(VentplanProject ventplanProject) throws VpxException {
         String projectname = ventplanProject.getProjekt().getBauvorhaben();
-        URI uri = makeURI(projectname);
+        URI uri = makeProjectURI(projectname);
         WebResource webResource = client.resource(uri);
         try {
             VentplanProject response = webResource.accept(MediaType.APPLICATION_XML).post(VentplanProject.class, ventplanProject);
-            System.out.printf("%s.update: %s response=%s%n", this, uri, response);
+            System.out.printf("%s.updateProject: %s response=%s%n", this, uri, response);
             return response;
         } catch (ClientHandlerException e) {
             throw new VpxException(e);
@@ -95,13 +144,13 @@ public class VpxClientImpl implements VpxClient {
     }
 
     @Override
-    public VentplanProject delete(VentplanProject ventplanProject) throws VpxException {
+    public VentplanProject deleteProject(VentplanProject ventplanProject) throws VpxException {
         String projectname = ventplanProject.getProjekt().getBauvorhaben();
-        URI uri = makeURI(projectname);
+        URI uri = makeProjectURI(projectname);
         WebResource webResource = client.resource(uri);
         try {
             VentplanProject response = webResource.delete(VentplanProject.class, ventplanProject);
-            System.out.printf("%s.delete: %s response=%s%n", this, uri, response);
+            System.out.printf("%s.deleteProject: %s response=%s%n", this, uri, response);
             return ventplanProject;
         } catch (ClientHandlerException e) {
             throw new VpxException(e);

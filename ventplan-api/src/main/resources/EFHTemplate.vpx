@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ventplan-project>
+    <projekt>
+        <erstellt>2013-10-28 07:06:49</erstellt>
+        <bearbeitet>2013-10-28 07:15:03</bearbeitet>
+        <bauvorhaben />
+        <bauvorhabenEmpfanger />
+        <bauvorhabenAnschrift />
+        <bauvorhabenPlz />
+        <bauvorhabenOrt />
+        <notizen />
+        <gebaude>
+            <gebaudeTyp>EFH</gebaudeTyp>
+            <gebaudeLage>SCH</gebaudeLage>
+            <warmeschutz>HOC</warmeschutz>
+            <luftdichtheit>A</luftdichtheit>
+            <luftdichtheitDruckdifferenz>2.0</luftdichtheitDruckdifferenz>
+            <luftdichtheitLuftwechsel>1.0</luftdichtheitLuftwechsel>
+            <luftdichtheitDruckexponent>0.666</luftdichtheitDruckexponent>
+            <besAnfFaktor>1.0</besAnfFaktor>
+            <personenAnzahl>4</personenAnzahl>
+            <personenVolumen>30.0</personenVolumen>
+            <fortluft>DAC</fortluft>
+            <geometrie>
+                <wohnflache>138.0</wohnflache>
+                <mittlereRaumhohe>2.5</mittlereRaumhohe>
+                <luftvolumen>345.0</luftvolumen>
+                <geluftetesVolumen>345.0</geluftetesVolumen>
+            </geometrie>
+            <raum>
+                <position>0</position>
+                <raumnummer />
+                <bezeichnung>Wohnzimmer</bezeichnung>
+                <raumtyp />
+                <geschoss>EG</geschoss>
+                <luftart>ZU</luftart>
+                <raumflache>20.0</raumflache>
+                <raumhohe>2.5</raumhohe>
+                <raumlange>5.0</raumlange>
+                <raumvolumen>50.0</raumvolumen>
+                <zuluftfaktor>3.0</zuluftfaktor>
+                <abluftvolumenstrom>0.0</abluftvolumenstrom>
+                <luftwechsel>0.94</luftwechsel>
+                <volumenstrom>0.0</volumenstrom>
+                <bezeichnungAbluftventile />
+                <anzahlAbluftventile>0</anzahlAbluftventile>
+                <abluftmengeJeVentil>0.0</abluftmengeJeVentil>
+                <bezeichnungZuluftventile>100ULC</bezeichnungZuluftventile>
+                <anzahlZuluftventile>2</anzahlZuluftventile>
+                <zuluftmengeJeVentil>23.5</zuluftmengeJeVentil>
+                <ventilebene>OG</ventilebene>
+                <anzahlUberstromventile>0</anzahlUberstromventile>
+                <uberstromelement />
+                <maxTurspaltHohe>10.0</maxTurspaltHohe>
+                <tur>
+                    <name>Tür</name>
+                    <breite>860</breite>
+                    <querschnitt>11896.35518411697</querschnitt>
+                    <spalthohe>13.832971144322059</spalthohe>
+                    <dichtung>true</dichtung>
+                </tur>
+            </raum>
+            <raum>
+                <position>1</position>
+                <raumnummer />
+                <bezeichnung>Kinderzimmer</bezeichnung>
+                <raumtyp />
+                <geschoss>EG</geschoss>
+                <luftart>ZU</luftart>
+                <raumflache>16.0</raumflache>
+                <raumhohe>2.5</raumhohe>
+                <raumlange>5.0</raumlange>
+                <raumvolumen>40.0</raumvolumen>
+                <zuluftfaktor>2.0</zuluftfaktor>
+                <abluftvolumenstrom>0.0</abluftvolumenstrom>
+                <luftwechsel>0.775</luftwechsel>
+                <volumenstrom>0.0</volumenstrom>
+                <bezeichnungAbluftventile />
+                <anzahlAbluftventile>0</anzahlAbluftventile>
+                <abluftmengeJeVentil>0.0</abluftmengeJeVentil>
+                <bezeichnungZuluftventile>100ULC</bezeichnungZuluftventile>
+                <anzahlZuluftventile>1</anzahlZuluftventile>
+                <zuluftmengeJeVentil>31.0</zuluftmengeJeVentil>
+                <ventilebene>OG</ventilebene>
+                <anzahlUberstromventile>0</anzahlUberstromventile>
+                <uberstromelement />
+                <maxTurspaltHohe>10.0</maxTurspaltHohe>
+                <tur>
+                    <name>Tür</name>
+                    <breite>860</breite>
+                    <querschnitt>7846.532142715448</querschnitt>
+                    <spalthohe>9.123874584552846</spalthohe>
+                    <dichtung>true</dichtung>
+                </tur>
+            </raum>
+            <raum>
+                <position>2</position>
+                <raumnummer />
+                <bezeichnung>Kinderzimmer 2</bezeichnung>
+                <raumtyp />
+                <geschoss>EG</geschoss>
+                <luftart>ZU</luftart>
+                <raumflache>12.0</raumflache>
+                <raumhohe>2.5</raumhohe>
+                <raumlange>5.0</raumlange>
+                <raumvolumen>30.0</raumvolumen>
+                <zuluftfaktor>2.0</zuluftfaktor>
+                <abluftvolumenstrom>0.0</abluftvolumenstrom>
+                <luftwechsel>1.0333333333333334</luftwechsel>
+                <volumenstrom>0.0</volumenstrom>
+                <bezeichnungAbluftventile />
+                <anzahlAbluftventile>0</anzahlAbluftventile>
+                <abluftmengeJeVentil>0.0</abluftmengeJeVentil>
+                <bezeichnungZuluftventile>100ULC</bezeichnungZuluftventile>
+                <anzahlZuluftventile>1</anzahlZuluftventile>
+                <zuluftmengeJeVentil>31.0</zuluftmengeJeVentil>
+                <ventilebene>OG</ventilebene>
+                <anzahlUberstromventile>0</anzahlUberstromventile>
+                <uberstromelement />
+                <maxTurspaltHohe>10.0</maxTurspaltHohe>
+                <tur>
+                    <name>Tür</name>
+                    <breite>860</breite>
+                    <querschnitt>7846.532142715448</querschnitt>
+                    <spalthohe>9.123874584552846</spalthohe>
+                    <dichtung>true</dichtung>
+                </tur>
+            </raum>
+            <raum>
+                <position>3</position>
+                <raumnummer />
+                <bezeichnung>Küche</bezeichnung>
+                <raumtyp />
+                <geschoss>EG</geschoss>
+                <luftart>AB</luftart>
+                <raumflache>20.0</raumflache>
+                <raumhohe>2.5</raumhohe>
+                <raumlange>5.0</raumlange>
+                <raumvolumen>50.0</raumvolumen>
+                <zuluftfaktor>0.0</zuluftfaktor>
+                <abluftvolumenstrom>45.0</abluftvolumenstrom>
+                <luftwechsel>0.9</luftwechsel>
+                <volumenstrom>0.0</volumenstrom>
+                <bezeichnungAbluftventile>125URH</bezeichnungAbluftventile>
+                <anzahlAbluftventile>1</anzahlAbluftventile>
+                <abluftmengeJeVentil>45.0</abluftmengeJeVentil>
+                <bezeichnungZuluftventile />
+                <anzahlZuluftventile>0</anzahlZuluftventile>
+                <zuluftmengeJeVentil>0.0</zuluftmengeJeVentil>
+                <ventilebene>OG</ventilebene>
+                <anzahlUberstromventile>0</anzahlUberstromventile>
+                <uberstromelement />
+                <maxTurspaltHohe>10.0</maxTurspaltHohe>
+                <tur>
+                    <name>Tür</name>
+                    <breite>860</breite>
+                    <querschnitt>11390.12730394178</querschnitt>
+                    <spalthohe>13.244334074350906</spalthohe>
+                    <dichtung>true</dichtung>
+                </tur>
+            </raum>
+            <raum>
+                <position>4</position>
+                <raumnummer />
+                <bezeichnung>Schlafzimmer</bezeichnung>
+                <raumtyp />
+                <geschoss>EG</geschoss>
+                <luftart>ZU</luftart>
+                <raumflache>20.0</raumflache>
+                <raumhohe>2.5</raumhohe>
+                <raumlange>5.0</raumlange>
+                <raumvolumen>50.0</raumvolumen>
+                <zuluftfaktor>2.0</zuluftfaktor>
+                <abluftvolumenstrom>0.0</abluftvolumenstrom>
+                <luftwechsel>0.62</luftwechsel>
+                <volumenstrom>0.0</volumenstrom>
+                <bezeichnungAbluftventile />
+                <anzahlAbluftventile>0</anzahlAbluftventile>
+                <abluftmengeJeVentil>0.0</abluftmengeJeVentil>
+                <bezeichnungZuluftventile>100ULC</bezeichnungZuluftventile>
+                <anzahlZuluftventile>1</anzahlZuluftventile>
+                <zuluftmengeJeVentil>31.0</zuluftmengeJeVentil>
+                <ventilebene>OG</ventilebene>
+                <anzahlUberstromventile>0</anzahlUberstromventile>
+                <uberstromelement />
+                <maxTurspaltHohe>10.0</maxTurspaltHohe>
+                <tur>
+                    <name>Tür</name>
+                    <breite>860</breite>
+                    <querschnitt>7846.532142715448</querschnitt>
+                    <spalthohe>9.123874584552846</spalthohe>
+                    <dichtung>true</dichtung>
+                </tur>
+            </raum>
+            <raum>
+                <position>5</position>
+                <raumnummer />
+                <bezeichnung>Bad mit/ohne WC</bezeichnung>
+                <raumtyp />
+                <geschoss>EG</geschoss>
+                <luftart>AB</luftart>
+                <raumflache>12.0</raumflache>
+                <raumhohe>2.5</raumhohe>
+                <raumlange>5.0</raumlange>
+                <raumvolumen>30.0</raumvolumen>
+                <zuluftfaktor>0.0</zuluftfaktor>
+                <abluftvolumenstrom>45.0</abluftvolumenstrom>
+                <luftwechsel>1.5</luftwechsel>
+                <volumenstrom>0.0</volumenstrom>
+                <bezeichnungAbluftventile>125URH</bezeichnungAbluftventile>
+                <anzahlAbluftventile>1</anzahlAbluftventile>
+                <abluftmengeJeVentil>45.0</abluftmengeJeVentil>
+                <bezeichnungZuluftventile />
+                <anzahlZuluftventile>0</anzahlZuluftventile>
+                <zuluftmengeJeVentil>0.0</zuluftmengeJeVentil>
+                <ventilebene>OG</ventilebene>
+                <anzahlUberstromventile>0</anzahlUberstromventile>
+                <uberstromelement />
+                <maxTurspaltHohe>10.0</maxTurspaltHohe>
+                <tur>
+                    <name>Tür</name>
+                    <breite>860</breite>
+                    <querschnitt>11390.12730394178</querschnitt>
+                    <spalthohe>13.244334074350906</spalthohe>
+                    <dichtung>true</dichtung>
+                </tur>
+            </raum>
+            <raum>
+                <position>6</position>
+                <raumnummer />
+                <bezeichnung>WC</bezeichnung>
+                <raumtyp />
+                <geschoss>EG</geschoss>
+                <luftart>AB</luftart>
+                <raumflache>8.0</raumflache>
+                <raumhohe>2.5</raumhohe>
+                <raumlange>5.0</raumlange>
+                <raumvolumen>20.0</raumvolumen>
+                <zuluftfaktor>0.0</zuluftfaktor>
+                <abluftvolumenstrom>25.0</abluftvolumenstrom>
+                <luftwechsel>1.25</luftwechsel>
+                <volumenstrom>0.0</volumenstrom>
+                <bezeichnungAbluftventile>100URH</bezeichnungAbluftventile>
+                <anzahlAbluftventile>1</anzahlAbluftventile>
+                <abluftmengeJeVentil>25.0</abluftmengeJeVentil>
+                <bezeichnungZuluftventile />
+                <anzahlZuluftventile>0</anzahlZuluftventile>
+                <zuluftmengeJeVentil>0.0</zuluftmengeJeVentil>
+                <ventilebene>OG</ventilebene>
+                <anzahlUberstromventile>0</anzahlUberstromventile>
+                <uberstromelement />
+                <maxTurspaltHohe>10.0</maxTurspaltHohe>
+                <tur>
+                    <name>Tür</name>
+                    <breite>860</breite>
+                    <querschnitt>6327.848502189879</querschnitt>
+                    <spalthohe>7.357963374639393</spalthohe>
+                    <dichtung>true</dichtung>
+                </tur>
+            </raum>
+            <raum>
+                <position>7</position>
+                <raumnummer />
+                <bezeichnung>Flur</bezeichnung>
+                <raumtyp />
+                <geschoss>EG</geschoss>
+                <luftart>UB</luftart>
+                <raumflache>10.0</raumflache>
+                <raumhohe>2.5</raumhohe>
+                <raumlange>5.0</raumlange>
+                <raumvolumen>25.0</raumvolumen>
+                <zuluftfaktor>0.0</zuluftfaktor>
+                <abluftvolumenstrom>0.0</abluftvolumenstrom>
+                <luftwechsel>0.0</luftwechsel>
+                <volumenstrom>0.0</volumenstrom>
+                <bezeichnungAbluftventile />
+                <anzahlAbluftventile>0</anzahlAbluftventile>
+                <abluftmengeJeVentil>0.0</abluftmengeJeVentil>
+                <bezeichnungZuluftventile />
+                <anzahlZuluftventile>0</anzahlZuluftventile>
+                <zuluftmengeJeVentil>0.0</zuluftmengeJeVentil>
+                <ventilebene>OG</ventilebene>
+                <anzahlUberstromventile>0</anzahlUberstromventile>
+                <uberstromelement />
+                <maxTurspaltHohe>10.0</maxTurspaltHohe>
+            </raum>
+            <raum>
+                <position>8</position>
+                <raumnummer />
+                <bezeichnung>Kellerraum</bezeichnung>
+                <raumtyp />
+                <geschoss>EG</geschoss>
+                <luftart>AB</luftart>
+                <raumflache>20.0</raumflache>
+                <raumhohe>2.5</raumhohe>
+                <raumlange>5.0</raumlange>
+                <raumvolumen>50.0</raumvolumen>
+                <zuluftfaktor>0.0</zuluftfaktor>
+                <abluftvolumenstrom>25.0</abluftvolumenstrom>
+                <luftwechsel>0.5</luftwechsel>
+                <volumenstrom>0.0</volumenstrom>
+                <bezeichnungAbluftventile>100URH</bezeichnungAbluftventile>
+                <anzahlAbluftventile>1</anzahlAbluftventile>
+                <abluftmengeJeVentil>25.0</abluftmengeJeVentil>
+                <bezeichnungZuluftventile />
+                <anzahlZuluftventile>0</anzahlZuluftventile>
+                <zuluftmengeJeVentil>0.0</zuluftmengeJeVentil>
+                <ventilebene>OG</ventilebene>
+                <anzahlUberstromventile>0</anzahlUberstromventile>
+                <uberstromelement />
+                <maxTurspaltHohe>10.0</maxTurspaltHohe>
+                <tur>
+                    <name>Tür</name>
+                    <breite>860</breite>
+                    <querschnitt>6327.848502189879</querschnitt>
+                    <spalthohe>7.357963374639393</spalthohe>
+                    <dichtung>true</dichtung>
+                </tur>
+            </raum>
+        </gebaude>
+        <zentralgerat>
+            <name>300WAC</name>
+            <manuell>false</manuell>
+            <volumenstrom>140</volumenstrom>
+            <geratestandort>EG</geratestandort>
+            <energie>
+                <zuAbluftWarme>true</zuAbluftWarme>
+                <bemessung>false</bemessung>
+                <ruckgewinnung>false</ruckgewinnung>
+                <regelung>false</regelung>
+            </energie>
+            <hygiene>
+                <ausfuhrung>false</ausfuhrung>
+                <filterung>false</filterung>
+                <keineVerschmutzung>false</keineVerschmutzung>
+                <dichtheitsklasseB>false</dichtheitsklasseB>
+            </hygiene>
+            <ruckschlagkappe>false</ruckschlagkappe>
+            <schallschutz>false</schallschutz>
+            <feuerstatte>false</feuerstatte>
+        </zentralgerat>
+    </projekt>
+</ventplan-project>

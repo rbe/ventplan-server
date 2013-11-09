@@ -21,4 +21,8 @@ public class VpxConstants {
 
     public static final String EMPTY_VENTPLAN_PROJECT = "<ventplan-project></ventplan-project>".intern();
 
+    public static final String ZU = "ZU";
+    public static final String AB = "AB";
+    public static final String ZU_AB = "ZU/AB";
+
 }
