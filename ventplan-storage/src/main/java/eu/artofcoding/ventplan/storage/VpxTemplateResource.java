@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Path("/vpx/template")
+@Path("/vpx/cloud/template")
 public class VpxTemplateResource {
 
     private static final Logger logger = Logger.getLogger(VpxTemplateResource.class.getName());
@@ -37,9 +37,8 @@ public class VpxTemplateResource {
     @GET
     @Path("/{name}")
     @Produces(MediaType.APPLICATION_XML)
-    public String getTemplate(@PathParam("name") String name) {
+    public String get(@PathParam("name") String name) {
         String xml = VpxConstants.EMPTY_VENTPLAN_PROJECT;
-        //VpxHelper.
         try {
             URL url = this.getClass().getResource(String.format("/%s.vpx", name));
             if (null != url) {

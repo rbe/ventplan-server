@@ -9,7 +9,7 @@
  * rbe, 02.01.13 19:05
  */
 
-package eu.artofcoding.ventplan.storage;
+package eu.artofcoding.ventplan;
 
 import com.sun.jersey.api.container.grizzly2.GrizzlyServerFactory;
 import com.sun.jersey.api.core.PackagesResourceConfig;

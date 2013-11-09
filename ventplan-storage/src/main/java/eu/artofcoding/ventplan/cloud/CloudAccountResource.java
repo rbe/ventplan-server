@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.logging.Logger;
 
-@Path("/cloud/account")
+@Path("/vpx/cloud/account")
 public class CloudAccountResource {
 
     private static final Logger logger = Logger.getLogger(CloudAccountResource.class.getName());

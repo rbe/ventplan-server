@@ -9,7 +9,7 @@
  * rbe, 14.12.12 09:37
  */
 
-package eu.artofcoding.ventplan.storage;
+package eu.artofcoding.ventplan;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
