@@ -51,7 +51,6 @@
                         <configuration>
                             <schemaFiles>ventplan-project.xsd</schemaFiles>
                             <packageName>eu.artofcoding.ventplan.api.vpx</packageName>
-                            <readOnly>true</readOnly>
                         </configuration>
                     </execution>
                 </executions>
