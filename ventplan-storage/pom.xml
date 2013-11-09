@@ -1,35 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!--
-        POM
-    -->
-    <groupId>eu.artofcoding.ventplan</groupId>
-    <artifactId>ventplan-storage</artifactId>
-    <version>7.3.0</version>
-    <!--
-        Parent POM
-    -->
     <parent>
         <groupId>eu.artofcoding.ventplan</groupId>
         <artifactId>ventplan-server</artifactId>
-        <version>7.3.0</version>
+        <version>7.3.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
-    <!--
-        Project Information
-    -->
+    <groupId>eu.artofcoding.ventplan.repository</groupId>
+    <artifactId>ventplan-storage</artifactId>
     <name>Ventplan Storage</name>
     <url>http://www.ventplan.de/product/ventplan-server/module-storage.html</url>
-    <!--
-        Build Settings
-    -->
     <packaging>war</packaging>
-    <!-- Properties -->
-    <properties>
-    </properties>
     <dependencies>
         <!--
             BaseX
@@ -73,34 +56,32 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-servlet</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+        </dependency>
+        <!--
+            Beetlejuice
+        -->
+        <dependency>
+            <groupId>eu.artofcoding.beetlejuice</groupId>
+            <artifactId>beetlejuice-xml</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!--
             Ventplan
         -->
         <dependency>
-            <groupId>eu.artofcoding.ventplan</groupId>
+            <groupId>eu.artofcoding.ventplan.api</groupId>
             <artifactId>ventplan-api</artifactId>
-            <version>7.3.0</version>
         </dependency>
     </dependencies>
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
         <plugins>
-            <!-- maven-compiler-plugin -->
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <testSource>${version.java.vm}</testSource>
-                    <testTarget>${version.java.vm}</testTarget>
-                    <source>${version.java.vm}</source>
-                    <target>${version.java.vm}</target>
-                    <verbose/>
-                </configuration>
-            </plugin>
             <!-- maven-war-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -110,6 +91,5 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>${project.artifactId}</finalName>
     </build>
 </project>

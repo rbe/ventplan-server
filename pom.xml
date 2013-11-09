@@ -1,16 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>eu.artofcoding</groupId>
-        <artifactId>aoc-parent</artifactId>
-        <version>1.1.0</version>
-    </parent>
     <groupId>eu.artofcoding.ventplan</groupId>
     <artifactId>ventplan-server</artifactId>
-    <version>7.3.0</version>
+    <version>7.3.0-SNAPSHOT</version>
     <name>Ventplan Server</name>
     <url>http://www.ventplan.com/product/ventplan-server.html</url>
     <inceptionYear>2012</inceptionYear>
@@ -44,10 +38,17 @@
         <module>ventplan-persistence</module>
         <module>ventplan-storage</module>
         <module>ventplan-prinzipskizze</module>
+        <module>ventplan-prinzipskizze-client</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
-        <version.java.vm>1.7</version.java.vm>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.java>1.7</version.java>
+        <version.org.datanucleus>[3.2.0-m1, 3.2.99)</version.org.datanucleus>
+        <version.javax.jdo>3.0.1</version.javax.jdo>
+        <version.org.basex>7.6</version.org.basex>
+        <version.com.sun.jersey>1.17.1</version.com.sun.jersey>
+        <version.eu.artofcoding.beetlejuice>1.3.0-SNAPSHOT</version.eu.artofcoding.beetlejuice>
     </properties>
     <profiles>
         <!-- arquillian-junit -->
@@ -58,12 +59,14 @@
                 <dependency>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
+                    <version>4.11</version>
                     <scope>test</scope>
                 </dependency>
                 <!-- Arquillian -->
                 <dependency>
                     <groupId>org.jboss.arquillian.junit</groupId>
                     <artifactId>arquillian-junit-container</artifactId>
+                    <version>1.1.1.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -76,12 +79,14 @@
                 <dependency>
                     <groupId>org.testng</groupId>
                     <artifactId>testng</artifactId>
+                    <version>6.8.7</version>
                     <scope>test</scope>
                 </dependency>
                 <!-- Arquillian TestNG -->
                 <dependency>
                     <groupId>org.jboss.arquillian.testng</groupId>
                     <artifactId>arquillian-testng-container</artifactId>
+                    <version>1.1.1.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -93,6 +98,7 @@
                 <dependency>
                     <groupId>org.jboss.spec</groupId>
                     <artifactId>jboss-javaee-6.0</artifactId>
+                    <version>3.0.2.Final</version>
                     <type>pom</type>
                     <scope>provided</scope>
                 </dependency>
@@ -120,14 +126,104 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+                    <version>1.0.0.Final-SNAPSHOT</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.glassfish.main.extras</groupId>
                     <artifactId>glassfish-embedded-all</artifactId>
+                    <version>4.0</version>
                     <scope>provided</scope>
                 </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.12</version>
+                        <configuration>
+                            <forkMode>always</forkMode>
+                            <classpathDependencyExcludes>
+                                <classpathDependencyExcludes>
+                                    javax.servlet:servlet-api
+                                </classpathDependencyExcludes>
+                                <classpathDependencyExcludes>
+                                    org.apache.felix:javax.servlet
+                                </classpathDependencyExcludes>
+                            </classpathDependencyExcludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!-- arquillian-glassfish-managed -->
+        <profile>
+            <id>arquillian-glassfish-managed</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-managed-3.1</artifactId>
+                    <version>1.0.0.CR3</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.main.extras</groupId>
+                    <artifactId>glassfish-embedded-all</artifactId>
+                    <version>3.1.2.2</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <!-- maven-dependency-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.glassfish.main.distributions</groupId>
+                                            <artifactId>glassfish</artifactId>
+                                            <version>3.1.2.2</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>target</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- maven-surefire-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.12</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <arquillian.launch>glassfish-managed</arquillian.launch>
+                            </systemPropertyVariables>
+                            <forkMode>always</forkMode>
+                            <classpathDependencyExcludes>
+                                <classpathDependencyExcludes>
+                                    javax.servlet:servlet-api
+                                </classpathDependencyExcludes>
+                                <classpathDependencyExcludes>
+                                    org.apache.felix:javax.servlet
+                                </classpathDependencyExcludes>
+                            </classpathDependencyExcludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <!-- arquillian-jbossas-managed -->
         <profile>
@@ -136,17 +232,20 @@
                 <dependency>
                     <groupId>org.jboss.spec</groupId>
                     <artifactId>jboss-javaee-6.0</artifactId>
+                    <version>3.0.2.Final</version>
                     <type>pom</type>
                     <scope>provided</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.jboss.as</groupId>
                     <artifactId>jboss-as-arquillian-container-managed</artifactId>
+                    <version>7.1.1.Final</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.jboss.arquillian.protocol</groupId>
                     <artifactId>arquillian-protocol-servlet</artifactId>
+                    <version>1.1.1.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -180,45 +279,268 @@
                 </plugins>
             </build>
         </profile>
+        <!-- Apache CXF -->
+        <profile>
+            <id>apache-cxf</id>
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.cxf</groupId>
+                        <artifactId>apache-cxf</artifactId>
+                        <version>2.7.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.cxf</groupId>
+                        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+                        <version>2.7.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.cxf</groupId>
+                        <artifactId>cxf-rt-transports-http</artifactId>
+                        <version>2.7.0</version>
+                    </dependency>
+                </dependencies>
+            </dependencyManagement>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-frontend-jaxws</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.cxf</groupId>
+                    <artifactId>cxf-rt-transports-http</artifactId>
+                </dependency>
+            </dependencies>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <!-- Apache CXF -->
+                        <plugin>
+                            <groupId>org.apache.cxf</groupId>
+                            <artifactId>cxf-codegen-plugin</artifactId>
+                            <version>2.7.7</version>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+                <plugins>
+                    <!-- maven-dependency-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>javax.xml.bind</groupId>
+                                            <artifactId>jaxb-api</artifactId>
+                                            <version>2.2</version>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>javax.xml.ws</groupId>
+                                            <artifactId>jaxws-api</artifactId>
+                                            <version>2.2</version>
+                                        </artifactItem>
+                                    </artifactItems>
+                                    <outputDirectory>${project.build.directory}/endorsed</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- cxf-codegen-plugin -->
+                    <plugin>
+                        <groupId>org.apache.cxf</groupId>
+                        <artifactId>cxf-codegen-plugin</artifactId>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.sun.xml.bind</groupId>
+                                <artifactId>jaxb-impl</artifactId>
+                                <version>2.2</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>com.sun.xml.bind</groupId>
+                                <artifactId>jaxb-xjc</artifactId>
+                                <version>2.2</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!--
+            JAX-WS on JDK 6
+            http://stackoverflow.com/questions/13841437/jaxws-maven-plugin-2-2-failure-with-nosuchmethoderror
+        -->
+        <profile>
+            <id>jaxws-jdk6</id>
+            <activation>
+                <jdk>1.6</jdk>
+            </activation>
+            <properties>
+                <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                    <version>2.2.7</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.xml.ws</groupId>
+                    <artifactId>jaxws-api</artifactId>
+                    <version>2.2.7</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.sun.xml.ws</groupId>
+                    <artifactId>jaxws-rt</artifactId>
+                    <version>2.2.7</version>
+                </dependency>
+                <!--
+                <dependency>
+                    <groupId>org.glassfish.metro</groupId>
+                    <artifactId>webservices-osgi</artifactId>
+                    <version>2.1</version>
+                </dependency>
+                -->
+            </dependencies>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <!--
+                            jaxws-maven-plugin, http://jax-ws-commons.java.net/jaxws-maven-plugin/usage.html
+                            alternative: org.codehaus.mojo:jaxws-maven-plugin
+                        -->
+                        <plugin>
+                            <groupId>org.jvnet.jax-ws-commons</groupId>
+                            <artifactId>jaxws-maven-plugin</artifactId>
+                            <version>2.2</version>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+                <plugins>
+                    <!-- maven-dependency-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${endorsed.dir}</outputDirectory>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>javax.xml.bind</groupId>
+                                            <artifactId>jaxb-api</artifactId>
+                                            <version>2.2.4</version>
+                                            <type>jar</type>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>javax.xml.ws</groupId>
+                                            <artifactId>jaxws-api</artifactId>
+                                            <version>2.2.8</version>
+                                            <type>jar</type>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- maven-compiler-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <testSource>1.6</testSource>
+                            <testTarget>1.6</testTarget>
+                            <source>1.6</source>
+                            <target>1.6</target>
+                            <compilerArgs>
+                                <compilerArg>-verbose</compilerArg>
+                                <compilerArg>-Xlint</compilerArg>
+                            </compilerArgs>
+                            <compilerArguments>
+                                <endorseddirs>${endorsed.dir}</endorseddirs>
+                            </compilerArguments>
+                            <verbose />
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     <dependencyManagement>
         <dependencies>
+            <!-- Google FindBugs JSR-305-->
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>2.0.2</version>
+            </dependency>
+            <!--
+                Java EE
+            -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>6.0</version>
+                <scope>provided</scope>
+            </dependency>
             <!--
                 Persistence
             -->
+            <!-- EclipseLink -->
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>org.eclipse.persistence.jpa</artifactId>
+                <version>2.5.1</version>
+            </dependency>
+            <!-- MySQL -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.26</version>
+                <scope>provided</scope>
+            </dependency>
             <!-- DataNucleus -->
             <dependency>
                 <groupId>javax.jdo</groupId>
                 <artifactId>jdo-api</artifactId>
-                <version>3.0.1</version>
+                <version>${version.javax.jdo}</version>
             </dependency>
             <dependency>
                 <groupId>org.datanucleus</groupId>
                 <artifactId>datanucleus-core</artifactId>
-                <version>[3.2.0-m1, 3.2.99)</version>
+                <version>${version.org.datanucleus}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>org.datanucleus</groupId>
                 <artifactId>datanucleus-api-jdo</artifactId>
-                <version>[3.2.0-m1, 3.2.99)</version>
+                <version>${version.org.datanucleus}</version>
             </dependency>
             <dependency>
                 <groupId>org.datanucleus</groupId>
                 <artifactId>datanucleus-rdbms</artifactId>
-                <version>[3.2.0-m1, 3.2.99)</version>
+                <version>${version.org.datanucleus}</version>
                 <scope>runtime</scope>
             </dependency>
             <!-- BaseX -->
             <dependency>
                 <groupId>org.basex</groupId>
                 <artifactId>basex</artifactId>
-                <version>7.6</version>
+                <version>${version.org.basex}</version>
             </dependency>
             <dependency>
                 <groupId>org.basex</groupId>
                 <artifactId>basex-api</artifactId>
-                <version>7.6</version>
+                <version>${version.org.basex}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.slf4j</groupId>
@@ -232,55 +554,244 @@
             <dependency>
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-server</artifactId>
-                <version>1.16</version>
+                <version>${version.com.sun.jersey}</version>
             </dependency>
             <dependency>
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-grizzly2</artifactId>
-                <version>1.16</version>
+                <version>${version.com.sun.jersey}</version>
             </dependency>
             <dependency>
                 <groupId>com.sun.jersey.contribs</groupId>
                 <artifactId>jersey-apache-client</artifactId>
-                <version>1.16</version>
+                <version>${version.com.sun.jersey}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-servlet</artifactId>
+                <version>${version.com.sun.jersey}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-client</artifactId>
+                <version>${version.com.sun.jersey}</version>
+            </dependency>
+            <!-- jax-ws-commons -->
+            <dependency>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>thread-scope</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <!-- Google Guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>15.0</version>
+            </dependency>
+            <!--
+                Beetlejuice
+            -->
+            <dependency>
+                <groupId>eu.artofcoding.beetlejuice</groupId>
+                <artifactId>beetlejuice-api</artifactId>
+                <version>${version.eu.artofcoding.beetlejuice}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.artofcoding.beetlejuice</groupId>
+                <artifactId>beetlejuice-cdm</artifactId>
+                <version>${version.eu.artofcoding.beetlejuice}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.artofcoding.beetlejuice</groupId>
+                <artifactId>beetlejuice-persistence</artifactId>
+                <version>${version.eu.artofcoding.beetlejuice}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.artofcoding.beetlejuice</groupId>
+                <artifactId>beetlejuice-xml</artifactId>
+                <version>${version.eu.artofcoding.beetlejuice}</version>
+            </dependency>
+            <!--
+                Ventplan
+            -->
+            <dependency>
+                <groupId>eu.artofcoding.ventplan.api</groupId>
+                <artifactId>ventplan-api</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
+        <pluginManagement>
+            <plugins>
+                <!-- maven-clean-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
+                <!-- maven-deploy-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+                <!-- maven-install-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
+                <!-- maven-site-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.3</version>
+                </plugin>
+                <!-- maven-resources-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+                <!-- maven-surefire-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.15</version>
+                </plugin>
+                <!-- versions-maven-plugin -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>2.1</version>
+                    <configuration>
+                        <generateBackupPoms>true</generateBackupPoms>
+                    </configuration>
+                </plugin>
+                <!-- maven-dependency-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.5.1</version>
+                </plugin>
+                <!-- maven-enforcer-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.3.1</version>
+                </plugin>
+                <!-- buildnumber-maven-plugin -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>1.2</version>
+                    <executions>
+                        <execution>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>create</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <doCheck>true</doCheck>
+                        <doUpdate>false</doUpdate>
+                        <format>${project.version}.{0,number}</format>
+                        <items>
+                            <item>buildNumber</item>
+                        </items>
+                    </configuration>
+                </plugin>
+                <!-- jaxb2-maven-plugin -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>jaxb2-maven-plugin</artifactId>
+                    <version>1.5</version>
+                </plugin>
+                <!-- maven-compiler-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <testSource>${version.java}</testSource>
+                        <testTarget>${version.java}</testTarget>
+                        <source>${version.java}</source>
+                        <target>${version.java}</target>
+                        <compilerArgs>
+                            <compilerArg>-verbose</compilerArg>
+                            <compilerArg>-Xlint</compilerArg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+                <!-- maven-jar-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+                <!-- maven-war-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <!-- maven-compiler-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <testSource>${version.java.vm}</testSource>
-                    <testTarget>${version.java.vm}</testTarget>
-                    <source>${version.java.vm}</source>
-                    <target>${version.java.vm}</target>
-                    <verbose/>
-                </configuration>
+            </plugin>
+            <!-- maven-clean-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+            <!-- maven-deploy-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+            <!-- maven-install-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+            </plugin>
+            <!-- maven-site-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+            <!-- versions-maven-plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+            <!-- maven-dependency-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <!-- maven-enforcer-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
-    <!--
-        Build Environment
-    -->
-    <!-- Issue Management -->
     <issueManagement>
         <system>JIRA</system>
         <url>http://artofcoding.atlassian.net/browse/VCS</url>
     </issueManagement>
-    <!-- Source Code Management -->
     <scm>
         <developerConnection>
             scm:git:[fetch=]https://bitbucket.org/ventplan/ventplan-server[push=]ssh://git@bitbucket.org:ventplan/ventplan-server.git
         </developerConnection>
         <url>https://bitbucket.org/ventplan/ventplan-server</url>
     </scm>
-    <!--
-        Maven Environment
-    -->
-    <!-- Repositories -->
     <repositories>
         <repository>
             <id>basex</id>
@@ -288,13 +799,16 @@
             <url>http://files.basex.org/maven</url>
         </repository>
     </repositories>
-    <!-- Distribution Management -->
     <distributionManagement>
-        <!-- art of coding's Public Maven Repository (local) -->
+        <snapshotRepository>
+            <id>local-snapshots</id>
+            <name>local-snapshots</name>
+            <url>${maven.local.snapshots}</url>
+        </snapshotRepository>
         <repository>
-            <id>private.maven.repository</id>
-            <name>Private Local Repository</name>
-            <url>${aoc.private.maven.repository}</url>
+            <id>local-releases</id>
+            <name>local-releases</name>
+            <url>${maven.local.releases}</url>
         </repository>
     </distributionManagement>
 </project>

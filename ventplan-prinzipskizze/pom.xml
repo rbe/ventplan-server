@@ -3,71 +3,36 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!--
-        POM
-    -->
-    <groupId>eu.artofcoding.ventplan</groupId>
-    <artifactId>ventplan-prinzipskizze</artifactId>
-    <version>7.3.0</version>
     <parent>
         <groupId>eu.artofcoding.ventplan</groupId>
         <artifactId>ventplan-server</artifactId>
-        <version>7.3.0</version>
+        <version>7.3.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
-    <!--
-        Project Information
-    -->
+    <groupId>eu.artofcoding.ventplan.document</groupId>
+    <artifactId>ventplan-prinzipskizze</artifactId>
     <name>Ventplan Prinzipskizze</name>
     <url>http://www.ventplan.de/product/ventplan-server/module-prinzipskizze.html</url>
-    <!--
-        Build Settings
-    -->
     <packaging>war</packaging>
-    <!-- Properties -->
-    <properties>
-    </properties>
     <dependencies>
-        <!--
-            Java EE
-        -->
+        <!-- Java EE -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!--
-            CDI
-        -->
-        <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <!--
-            Web Services
-        -->
         <!-- jax-ws-commons -->
         <dependency>
             <groupId>org.jvnet.jax-ws-commons</groupId>
             <artifactId>thread-scope</artifactId>
         </dependency>
-        <!--
-            Ventplan
-        -->
+        <!-- Ventplan -->
         <dependency>
-            <groupId>eu.artofcoding.ventplan</groupId>
+            <groupId>eu.artofcoding.ventplan.api</groupId>
             <artifactId>ventplan-api</artifactId>
-            <version>7.0.0</version>
         </dependency>
     </dependencies>
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
         <plugins>
             <!-- maven-war-plugin -->
             <plugin>
@@ -81,44 +46,6 @@
                     </webResources>
                 </configuration>
             </plugin>
-            <!-- jboss-as-maven-plugin -->
-            <plugin>
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
-                <executions>
-                    <!-- Deploy the application on "install" -->
-                    <execution>
-                        <id>jboss-deploy</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                        <configuration>
-                            <!-- Setup SSH tunnel to service.ventplan.com -->
-                            <hostname>localhost</hostname>
-                            <port>9999</port>
-                            <username>admin</username>
-                            <password>password</password>
-                        </configuration>
-                    </execution>
-                    <!-- Re-deploy the application on "deploy" -->
-                    <execution>
-                        <id>jboss-redeploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>redeploy</goal>
-                        </goals>
-                        <configuration>
-                            <!-- Setup SSH tunnel to service.ventplan.com -->
-                            <hostname>localhost</hostname>
-                            <port>9999</port>
-                            <username>admin</username>
-                            <password>password</password>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
-        <finalName>${project.artifactId}</finalName>
     </build>
 </project>
