@@ -24,7 +24,6 @@ import com.google.common.primitives.Doubles;
 import eu.artofcoding.ventplan.api.vpx.*;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -164,7 +163,7 @@ public class Calculation {
     /**
      * Addiere alle Volumen(m³)-Spalten aus der Tabelle für Raumvolumenströme (Luftmengenermittlung).
      */
-    public static double summeLuftmengeVolumen(@NotNull Building building, @Null Luftart luftart) {
+    public static double summeLuftmengeVolumen(@NotNull Building building, Luftart luftart) {
         // Hole alle Räume mit der entsprechenden Luftart; oder alle
         double volumenMitLuftart = 0.0d;
         for (Room room : building.getRaum()) {
