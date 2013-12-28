@@ -16,14 +16,6 @@
     <packaging>ejb</packaging>
     <dependencies>
         <!--
-            Java EE
-        -->
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <!--
             JPA
         -->
         <!-- EclipseLink -->
