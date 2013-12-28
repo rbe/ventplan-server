@@ -129,7 +129,7 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <version>1.0.0.Final-SNAPSHOT</version>
+                    <version>1.0.0.CR4</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -380,9 +380,9 @@
         -->
         <profile>
             <id>jaxws-jdk6</id>
-            <activation>
+            <!--<activation>
                 <jdk>1.6</jdk>
-            </activation>
+            </activation>-->
             <properties>
                 <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
             </properties>
@@ -718,10 +718,10 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.1</version>
                     <configuration>
-                        <testSource>${version.java}</testSource>
-                        <testTarget>${version.java}</testTarget>
-                        <source>${version.java}</source>
-                        <target>${version.java}</target>
+                        <testSource>1.7</testSource>
+                        <testTarget>1.7</testTarget>
+                        <source>1.7</source>
+                        <target>1.7</target>
                         <compilerArgs>
                             <compilerArg>-verbose</compilerArg>
                             <compilerArg>-Xlint</compilerArg>
