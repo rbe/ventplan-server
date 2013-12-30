@@ -10,8 +10,9 @@
  * rbe, 18.03.13 11:14
  */
 
-package com.ventplan.prinzipskizze;
+package com.ventplan.prinzipskizze.wac202;
 
+import com.ventplan.prinzipskizze.PrinzipskizzeHelper;
 import org.jvnet.jax_ws_commons.thread_scope.ThreadScope;
 
 import javax.jws.WebMethod;
@@ -38,8 +39,7 @@ public class WAC202Service {
                                 @WebParam(name = "zuluft1") ArrayList<String> zuluft1,
                                 @WebParam(name = "zuluft2") ArrayList<String> zuluft2,
                                 @WebParam(name = "zuluft3") ArrayList<String> zuluft3) {
-        byte[] prinzipskizze = new PrinzipskizzeHelper().makePrinzipskizze(
-                "plain",
+        byte[] prinzipskizze = new PrinzipskizzeHelper().makeWAC202Prinzipskizze(
                 null, null, null, null,
                 aussenluft, fortluft, zentralgerat,
                 abluft1, abluft2, abluft3,

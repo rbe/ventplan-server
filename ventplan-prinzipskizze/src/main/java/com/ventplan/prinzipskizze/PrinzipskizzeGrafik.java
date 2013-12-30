@@ -29,19 +29,19 @@ import static com.ventplan.prinzipskizze.PrinzipskizzeCoord.*;
 /**
  * @author rbe
  */
-public class PrinzipskizzeGrafik {
+public abstract class PrinzipskizzeGrafik {
 
     /**
      * Map for positions of AB LVK descriptions: this is the
      * Y offset of the lowest connection of the LVK.
      */
-    private static final Map<String, Integer> LVK_AB_OFFSET_Y = new HashMap<String, Integer>();
+    private static final Map<String, Integer> LVK_AB_OFFSET_Y = new HashMap<>();
 
     /**
      * Map for positions of ZU LVK descriptions: this is the
      * Y offset of the highest connection of the LVK.
      */
-    private static final Map<String, Integer> LVK_ZU_OFFSET_Y = new HashMap<String, Integer>();
+    private static final Map<String, Integer> LVK_ZU_OFFSET_Y = new HashMap<>();
 
     static {
         // Abluft
@@ -56,9 +56,6 @@ public class PrinzipskizzeGrafik {
         LVK_ZU_OFFSET_Y.put(ZU_LVK_3, LVK_ZU_FIRST + 2 * LVK_HEIGHT);
     }
 
-    public PrinzipskizzeGrafik() {
-    }
-
     /**
      * @param luftart      Luftart.
      * @param verteilebene Verteilebene.
@@ -67,12 +64,12 @@ public class PrinzipskizzeGrafik {
     public void addConnector(Map<String, HashMap<String, List<String>>> connector, String luftart, String verteilebene, String raumname) {
         HashMap<String, List<String>> verteilebeneMap = connector.get(luftart);
         if (null == verteilebeneMap) {
-            verteilebeneMap = new HashMap<String, List<String>>();
+            verteilebeneMap = new HashMap<>();
             connector.put(luftart.toUpperCase(), verteilebeneMap);
         }
         List<String> raumList = verteilebeneMap.get(verteilebene);
         if (null == raumList) {
-            raumList = new ArrayList<String>();
+            raumList = new ArrayList<>();
             verteilebeneMap.put(verteilebene.toUpperCase(), raumList);
         }
         raumList.add(raumname);
@@ -193,11 +190,10 @@ public class PrinzipskizzeGrafik {
     }
 
     /**
-     * @param basis Which directory for images to use?
      * @return File reference to constructed image.
      * @throws java.io.IOException
      */
-    public File drawText(String basis, Map<String, String> names, Map<String, HashMap<String, List<String>>> connector) throws IOException {
+    public File drawText(Map<String, String> names, Map<String, HashMap<String, List<String>>> connector) throws IOException {
         File output = null;
         Map<String, List<String>> abluft = connector.get(AB);
         Map<String, List<String>> zuluft = connector.get(ZU);
@@ -205,10 +201,10 @@ public class PrinzipskizzeGrafik {
             // Which graphic to use as base?
             String filename = String.format("AB%d_ZU%d", abluft.size(), zuluft.size());
             // Load graphic
-            String packageName = PrinzipskizzeGrafik.class.getPackage().getName();
-            String fullPathToImage = String.format("/%s/images/%s/%s.png", packageName.replaceAll("[.]", "/"), basis, filename);
-            ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-            InputStream resourceAsStream = contextClassLoader.getResourceAsStream(fullPathToImage);
+            String packageName = this.getClass().getPackage().getName();
+            String pathToImage = String.format("/%s/%s.png", packageName.replaceAll("[.]", "/"), filename);
+            //ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            InputStream resourceAsStream = this.getClass().getResourceAsStream(pathToImage);
             BufferedImage img = ImageIO.read(resourceAsStream);
             // Projekt
             if (names.containsKey(PROJEKT)) {
