@@ -490,6 +490,13 @@
     </profiles>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.1.2.Final</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
             <!-- Google FindBugs JSR-305-->
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
