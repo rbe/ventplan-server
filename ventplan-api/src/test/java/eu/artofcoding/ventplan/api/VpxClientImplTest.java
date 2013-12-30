@@ -14,16 +14,19 @@ package eu.artofcoding.ventplan.api;
 
 import eu.artofcoding.ventplan.api.vpx.VentplanProject;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.testng.Arquillian;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
-public class VpxClientImplTest extends Arquillian {
+import static org.junit.Assert.assertEquals;
+
+@RunWith(Arquillian.class)
+public class VpxClientImplTest {
 
     @Inject
     @VpxCloud(port = 8080)
@@ -40,7 +43,7 @@ public class VpxClientImplTest extends Arquillian {
     }
 
     @Test
-    public void testGetUsername() throws Exception {
+    public void testGetUsername() {
         String username1 = vpxClient.getUsername();
         System.out.printf("1. call to getUsername()=%s%n", username1);
         // Username must be consistent across calls
@@ -49,9 +52,9 @@ public class VpxClientImplTest extends Arquillian {
         String username3 = vpxClient.getUsername();
         System.out.printf("3. call to getUsername()=%s%n", username3);
         String message = "Username not equal across different calls!";
-        Assert.assertEquals(username1, username2, message);
-        Assert.assertEquals(username1, username3, message);
-        Assert.assertEquals(username2, username3, message);
+        assertEquals(message, username1, username2);
+        assertEquals(message, username1, username3);
+        assertEquals(message, username2, username3);
     }
 
 /*

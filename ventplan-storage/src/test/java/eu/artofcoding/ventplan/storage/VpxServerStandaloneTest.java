@@ -18,15 +18,17 @@ import eu.artofcoding.ventplan.api.vpx.ObjectFactory;
 import eu.artofcoding.ventplan.api.vpx.VentplanProject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.testng.Arquillian;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.testng.annotations.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
-public class VpxServerStandaloneTest extends Arquillian {
+@RunWith(Arquillian.class)
+public class VpxServerStandaloneTest {
 
     @Inject
     @VpxCloud(port = 8080)
@@ -35,9 +37,9 @@ public class VpxServerStandaloneTest extends Arquillian {
     @Deployment
     public static JavaArchive createDeployment() throws Exception {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "vpx-standalone-test.jar")
-                .addPackage(VentplanProject.class.getPackage().getName())
-                .addPackage(VpxServer.class.getPackage().getName())
-                .addPackage(VpxCloud.class.getPackage().getName())
+                .addPackage(VentplanProject.class.getPackage())
+                .addPackage(VpxServer.class.getPackage())
+                .addPackage(VpxCloud.class.getPackage())
                 .addAsManifestResource(EmptyAsset.INSTANCE, "MANIFEST.MF")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.println(jar.toString(true));

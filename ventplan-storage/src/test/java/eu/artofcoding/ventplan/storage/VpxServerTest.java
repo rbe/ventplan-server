@@ -20,28 +20,32 @@ import eu.artofcoding.ventplan.api.vpx.VentplanProject;
 import eu.artofcoding.ventplan.cloud.CloudAccountResource;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.testng.Arquillian;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.testng.annotations.Test;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 import java.io.File;
 
-public class VpxServerTest extends Arquillian {
+@Ignore
+@RunWith(Arquillian.class)
+public class VpxServerTest {
 
     @Inject
     @VpxCloud(port = 8080)
     private VpxClient vpxClient;
 
     @Deployment
-    public static WebArchive createDeployment() throws Exception {
+    public static WebArchive createDeployment() {
         WebArchive war = ShrinkWrap.create(WebArchive.class, "vpx-server-test.war")
-                .addPackage(VentplanProject.class.getPackage().getName())
-                .addPackage(CloudAccountResource.class.getPackage().getName())
-                .addPackage(VpxStorageResource.class.getPackage().getName())
-                .addPackage(VpxCloud.class.getPackage().getName())
+                .addPackage(VentplanProject.class.getPackage())
+                .addPackage(CloudAccountResource.class.getPackage())
+                .addPackage(VpxStorageResource.class.getPackage())
+                .addPackage(VpxCloud.class.getPackage())
                 .addAsManifestResource(EmptyAsset.INSTANCE, "MANIFEST.MF")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"));
