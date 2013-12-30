@@ -1,21 +1,19 @@
 package com.ventplan.prinzipskizze.wac202;
 
 import com.ventplan.prinzipskizze.PrinzipskizzeGrafik;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static com.ventplan.prinzipskizze.PrinzipskizzeConstants.*;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 public class WAC202PrinzipskizzeTest {
 
@@ -51,12 +49,8 @@ public class WAC202PrinzipskizzeTest {
         prinzipskizzeGrafik.addConnector(connector, ZU, "OG", "Schlafzimmer / 125 URH");
         //
         File file = prinzipskizzeGrafik.drawText(names, connector);
-        if (file.length() > 0) {
-            Path target = Paths.get(DESKTOP, "Plain.png");
-            Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-            Desktop.getDesktop().open(target.toFile());
-        }
-        assertNotNull(file);
+        assertNotNull("File has been produced", file);
+        assertThat("File length must be greater than 100", file.length(), CoreMatchers.is(greaterThan(100l)));
     }
 
 }
