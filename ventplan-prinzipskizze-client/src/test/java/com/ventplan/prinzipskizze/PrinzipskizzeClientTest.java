@@ -44,7 +44,7 @@ public class PrinzipskizzeClientTest {
         fortluft = "200LG01";
         zentralgeraet = "300WAC";
 
-        abluftEG = new ArrayList<String>();
+        abluftEG = new ArrayList<>();
         abluftEG.add("Kinderzimmer 1 / 100ULC");
         abluftEG.add("Wohnzimmer / 100ULC");
         abluftEG.add("Kinderzimmer 1 / 100ULC");
@@ -52,24 +52,24 @@ public class PrinzipskizzeClientTest {
         abluftEG.add("Wohnzimmer / 100ULC");
         abluftEG.add("Wohnzimmer / 100ULC");
 
-        abluftDG = new ArrayList<String>();
+        abluftDG = new ArrayList<>();
         abluftDG.add("Wohnzimmer / 100ULC");
         abluftDG.add("Wohnzimmer / 100ULC");
 
-        abluftOG = new ArrayList<String>();
+        abluftOG = new ArrayList<>();
         abluftOG.add("Kinderzimmer 1 / 100ULC");
         abluftOG.add("Wohnzimmer / 100ULC");
         abluftOG.add("Wohnzimmer / 100ULC");
 
-        zuluftEG = new ArrayList<String>();
+        zuluftEG = new ArrayList<>();
         zuluftEG.add("Büro / 125 URH");
         zuluftEG.add("Büro / 125 URH");
 
-        zuluftDG = new ArrayList<String>();
+        zuluftDG = new ArrayList<>();
         zuluftDG.add("Büro / 125 URH");
         zuluftDG.add("Schlafzimmer / 125 URH");
 
-        zuluftOG = new ArrayList<String>();
+        zuluftOG = new ArrayList<>();
         zuluftOG.add("Büro / 125 URH");
         zuluftOG.add("Schlafzimmer / 125 URH");
     }
