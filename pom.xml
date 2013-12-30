@@ -47,7 +47,7 @@
         <version.org.datanucleus>[3.2.0-m1, 3.2.99)</version.org.datanucleus>
         <version.javax.jdo>3.0.1</version.javax.jdo>
         <version.org.basex>7.6</version.org.basex>
-        <version.com.sun.jersey>1.17.1</version.com.sun.jersey>
+        <version.com.sun.jersey>1.18</version.com.sun.jersey>
         <version.eu.artofcoding.beetlejuice>1.3.0-SNAPSHOT</version.eu.artofcoding.beetlejuice>
     </properties>
     <profiles>
