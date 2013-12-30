@@ -14,6 +14,7 @@ package com.ventplan.prinzipskizze;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
@@ -24,6 +25,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+@Ignore
 public class PrinzipskizzeClientTest {
 
     private static String aussenluft;
