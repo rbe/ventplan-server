@@ -86,14 +86,12 @@
         <profile>
             <id>arquillian-testng</id>
             <dependencies>
-                <!-- TestNG -->
                 <dependency>
                     <groupId>org.testng</groupId>
                     <artifactId>testng</artifactId>
                     <version>6.8.7</version>
                     <scope>test</scope>
                 </dependency>
-                <!-- Arquillian TestNG -->
                 <dependency>
                     <groupId>org.jboss.arquillian.testng</groupId>
                     <artifactId>arquillian-testng-container</artifactId>
