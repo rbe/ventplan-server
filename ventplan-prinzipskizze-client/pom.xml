@@ -12,24 +12,12 @@
     <groupId>eu.artofcoding.ventplan.document</groupId>
     <artifactId>ventplan-prinzipskizze-client</artifactId>
     <name>Ventplan Prinzipskizze Client</name>
-    <url>http://www.ventplan.de/product/ventplan-server/module-prinzipskizze.html</url>
     <packaging>jar</packaging>
-    <dependencies>
-        <!--
-            Ventplan
-        -->
-        <dependency>
-            <groupId>eu.artofcoding.ventplan.api</groupId>
-            <artifactId>ventplan-api</artifactId>
-        </dependency>
-    </dependencies>
     <profiles>
-        <!-- apache-cxf -->
         <profile>
             <id>apache-cxf</id>
             <build>
                 <plugins>
-                    <!-- cxf-codegen-plugin -->
                     <plugin>
                         <groupId>org.apache.cxf</groupId>
                         <artifactId>cxf-codegen-plugin</artifactId>
@@ -74,12 +62,10 @@
                 </plugins>
             </build>
         </profile>
-        <!-- JAX-WS -->
         <profile>
             <id>jax-ws</id>
             <build>
                 <plugins>
-                    <!-- jaxws-maven-plugin -->
                     <plugin>
                         <groupId>org.jvnet.jax-ws-commons</groupId>
                         <artifactId>jaxws-maven-plugin</artifactId>

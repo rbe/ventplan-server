@@ -26,9 +26,6 @@ import java.util.Map;
 import static com.ventplan.prinzipskizze.PrinzipskizzeConstants.*;
 import static com.ventplan.prinzipskizze.PrinzipskizzeCoord.*;
 
-/**
- * @author rbe
- */
 public abstract class PrinzipskizzeGrafik {
 
     /**

@@ -13,6 +13,7 @@
 package com.ventplan.prinzipskizze;
 
 import com.ventplan.prinzipskizze.wac202.WAC202Prinzipskizze;
+import com.ventplan.prinzipskizze.wac237.WAC237Prinzipskizze;
 
 import java.io.File;
 import java.io.IOException;
@@ -101,7 +102,7 @@ public class PrinzipskizzeHelper {
     }
 
     public byte[] makeWAC237Prinzipskizze(String projekt, String plan, String dokumentersteller, String datum, String aussenluft, String fortluft, String zentralgerat, ArrayList<String> abluft1, ArrayList<String> abluft2, ArrayList<String> abluft3, ArrayList<String> zuluft1, ArrayList<String> zuluft2, ArrayList<String> zuluft3) {
-        WAC202Prinzipskizze prinzipskizze = new WAC202Prinzipskizze();
+        WAC237Prinzipskizze prinzipskizze = new WAC237Prinzipskizze();
         byte[] bytes = makePrinzipskizze(prinzipskizze, projekt, plan, dokumentersteller, datum, aussenluft, fortluft, zentralgerat, abluft1, abluft2, abluft3, zuluft1, zuluft2, zuluft3);
         return bytes;
     }

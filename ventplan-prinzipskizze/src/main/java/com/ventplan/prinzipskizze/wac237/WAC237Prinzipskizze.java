@@ -20,9 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author rbe
- */
 public class WAC237Prinzipskizze extends PrinzipskizzeGrafik {
 
     public File drawText(Map<String, String> names, Map<String, HashMap<String, List<String>>> connector) throws IOException {

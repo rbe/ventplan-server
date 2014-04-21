@@ -16,30 +16,30 @@ import java.awt.*;
 
 public class PrinzipskizzeConstants {
 
-    public static final String PROJEKT = "projekt".intern();
-    public static final String PLAN = "plan".intern();
-    public static final String DOKUMENTERSTELLER = "dokumentersteller".intern();
-    public static final String ERSTELLDATUM = "erstelldatum".intern();
-    public static final String AUSSENLUFT = "aussenluft".intern();
-    public static final String FORTLUFT = "fortluft".intern();
-    public static final String ZENTRALGERAET = "zentralgeraet".intern();
-    public static final String ARIAL = "Arial".intern();
+    public static final String PROJEKT = "projekt";
+    public static final String PLAN = "plan";
+    public static final String DOKUMENTERSTELLER = "dokumentersteller";
+    public static final String ERSTELLDATUM = "erstelldatum";
+    public static final String AUSSENLUFT = "aussenluft";
+    public static final String FORTLUFT = "fortluft";
+    public static final String ZENTRALGERAET = "zentralgeraet";
+    public static final String ARIAL = "Arial";
 
-    public static final String AB_LVK_1 = "AB_LVK_1".intern();
-    public static final String AB_LVK_2 = "AB_LVK_2".intern();
-    public static final String AB_LVK_3 = "AB_LVK_3".intern();
-    public static final String ZU_LVK_1 = "ZU_LVK_1".intern();
-    public static final String ZU_LVK_2 = "ZU_LVK_2".intern();
-    public static final String ZU_LVK_3 = "ZU_LVK_3".intern();
+    public static final String AB_LVK_1 = "AB_LVK_1";
+    public static final String AB_LVK_2 = "AB_LVK_2";
+    public static final String AB_LVK_3 = "AB_LVK_3";
+    public static final String ZU_LVK_1 = "ZU_LVK_1";
+    public static final String ZU_LVK_2 = "ZU_LVK_2";
+    public static final String ZU_LVK_3 = "ZU_LVK_3";
 
-    public static final String AB = "AB".intern();
-    public static final String ZU = "ZU".intern();
+    public static final String AB = "AB";
+    public static final String ZU = "ZU";
 
-    public static final String VENTPLAN_ = "ventplan_".intern();
-    public static final String DOT_PNG = ".png".intern();
-    public static final String PNG = "png".intern();
+    public static final String VENTPLAN_ = "ventplan_";
+    public static final String DOT_PNG = ".png";
+    public static final String PNG = "png";
 
-    public static final String ZENTRALLUEFTUNGSGERAET_TYP_S = "Zentrallüftungsgerät Typ %s".intern();
+    public static final String ZENTRALLUEFTUNGSGERAET_TYP_S = "Zentrallüftungsgerät Typ %s";
 
     public static final String FONT_FAMILY = "Arial";
     public static final int FONT_SIZE = 12;
