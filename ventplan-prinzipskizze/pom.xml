@@ -12,7 +12,6 @@
     <artifactId>ventplan-prinzipskizze</artifactId>
     <packaging>war</packaging>
     <name>Ventplan Prinzipskizze</name>
-    <url>http://www.ventplan.de/product/ventplan-server/module-prinzipskizze.html</url>
     <build>
         <plugins>
             <plugin>
