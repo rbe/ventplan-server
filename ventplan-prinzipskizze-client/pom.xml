@@ -80,7 +80,6 @@
                                     <packageName>com.ventplan.prinzipskizze.wsclient.wac202</packageName>
                                     <sourceDestDir>src/main/java</sourceDestDir>
                                     <target>2.1</target>
-                                    <verbose>true</verbose>
                                     <wsdlDirectory>src/main/resources/wsdl</wsdlDirectory>
                                     <wsdlUrls>
                                         <wsdlUrl>http://localhost:8080/ventplan237/PrinzipskizzeService?wsdl</wsdlUrl>
@@ -99,7 +98,6 @@
                                     <packageName>com.ventplan.prinzipskizze.wsclient.wac237</packageName>
                                     <sourceDestDir>src/main/java</sourceDestDir>
                                     <target>2.1</target>
-                                    <verbose>true</verbose>
                                     <wsdlDirectory>src/main/resources/wsdl</wsdlDirectory>
                                     <wsdlUrls>
                                         <wsdlUrl>http://localhost:8080/ventplan237/PrinzipskizzeWAC237?wsdl</wsdlUrl>
