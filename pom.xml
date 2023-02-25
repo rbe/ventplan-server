@@ -91,7 +91,7 @@
         -->
         <version.org.junit>4.10</version.org.junit>
         <!-- TestNG, http://maven.apache.org/plugins/maven-surefire-plugin/examples/testng.html -->
-        <version.org.testng>6.8</version.org.testng>
+        <version.org.testng>7.7.0</version.org.testng>
         <!--
             Maven Plugins.
             http://maven.apache.org/plugins/index.html
